@@ -1,0 +1,22 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Giannicola Olivadoti <olinicola@gmail.com>
+#
+
+# Source Prezto
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+export DOTFILES_PATH="${HOME}/.dotfiles"
+
+# Source dotfiles
+for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.zsh); do
+    source $file
+done
+
+# Disable some Prezto aliases
+alias rm='nocorrect rm'
+alias mv='nocorrect mv'
