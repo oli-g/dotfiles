@@ -64,6 +64,7 @@ source "${DOTFILES_PATH}/lib/zsh/install.sh"
 source "${DOTFILES_PATH}/lib/git/install.sh"
 source "${DOTFILES_PATH}/lib/prezto/install.sh"
 source "${DOTFILES_PATH}/lib/ruby/install.sh"
+source "${DOTFILES_PATH}/lib/go/install.sh"
 
 for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.symlink); do
     # Force create or replace the symlink
