@@ -41,7 +41,7 @@ for opt in $@; do
     case $opt in
         --no-packages) no_packages=true ;;
         --no-sync) no_sync=true ;;
-        -*|--*) e_warning "Warning: invalid option $opt" ;;
+        -*|--*) e_warning "Warning: invalid option $opt." ;;
     esac
 done
 
@@ -62,6 +62,7 @@ fi
 source "${DOTFILES_PATH}/lib/brew/install.sh"
 source "${DOTFILES_PATH}/lib/zsh/install.sh"
 source "${DOTFILES_PATH}/lib/git/install.sh"
+source "${DOTFILES_PATH}/lib/sublime/install.sh"
 source "${DOTFILES_PATH}/lib/prezto/install.sh"
 source "${DOTFILES_PATH}/lib/ruby/install.sh"
 source "${DOTFILES_PATH}/lib/go/install.sh"

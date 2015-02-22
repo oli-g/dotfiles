@@ -6,6 +6,7 @@ if [[ ! -d ${PREZTO_PATH} ]]; then
 else
     ask_confirmation "Updating prezto..."
     if is_confirmed; then
+    	# TODO
         e_header "Bo"
     fi
 fi
