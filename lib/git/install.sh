@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if ! formula_exists "git"; then
     e_header "Installing git..."
     brew install git

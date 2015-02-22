@@ -1,0 +1,4 @@
+set backspace=2
+syntax on
+filetype indent plugin on
+autocmd Filetype gitcommit setlocal textwidth=72
