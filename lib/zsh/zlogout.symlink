@@ -6,4 +6,4 @@
 #
 
 # Print the message.
-cat "Bye!"
+echo "Bye!"
