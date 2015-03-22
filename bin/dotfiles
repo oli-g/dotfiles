@@ -7,6 +7,8 @@ DOTFILES_GIT_REMOTE="git@github.com:oli-g/dotfiles.git"
 PREZTO_PATH="${HOME}/.zprezto"
 PREZTO_GIT_REMOTE="git@github.com:sorin-ionescu/prezto.git"
 
+PROJECTS_PATH="${HOME}/Code"
+
 # If missing, download and extract the dotfiles repository
 if [[ ! -d $DOTFILES_PATH ]]; then
     printf "$(tput setaf 7)Downloading dotfiles...\033[m\n"

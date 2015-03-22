@@ -7,6 +7,18 @@ if ! formula_exists "go"; then
         e_header "Installing mercurial..."
         brew install hg
     fi
+
+    export GOPATH="${PROJECTS_PATH}/go"
+    export GOROOT="$(brew --prefix)/opt/go/libexec"
+    if [[ ! -d "${GOPATH}/bin" ]]; then
+        mkdir -p "${GOPATH}/bin"
+    fi
+    export PATH="${GOPATH}/bin":$PATH:"${GOROOT}/bin"
+
+    e_header "Installing godoc..."
+    go get golang.org/x/tools/cmd/godoc
+    e_header "Installing vet..."
+    go get golang.org/x/tools/cmd/vet
 else
     ask_confirmation "Updating go..."
     if is_confirmed; then
