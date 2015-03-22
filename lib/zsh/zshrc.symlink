@@ -18,6 +18,11 @@ for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.zsh); do
     source $file
 done
 
+# Source .localrc for private variables and overrides
+if [ -e "${HOME}/.localrc" ]; then
+    source "${HOME}/.localrc"
+fi
+
 # Disable some Prezto aliases
 alias rm='nocorrect rm'
 alias mv='nocorrect mv'
