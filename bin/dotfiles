@@ -1,24 +1,23 @@
 #!/bin/bash
 
+set -euo pipefail
+
+# Setup dotfiles environment variables
 DOTFILES_PATH="${HOME}/.dotfiles"
-DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/master"
 DOTFILES_GIT_REMOTE="git@github.com:oli-g/dotfiles.git"
-
-PREZTO_PATH="${HOME}/.zprezto"
-PREZTO_GIT_REMOTE="git@github.com:sorin-ionescu/prezto.git"
-
+DOTFILES_GIT_BRANCH="revamp"
+DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/${DOTFILES_GIT_BRANCH}"
+# PREZTO_PATH="${HOME}/.zprezto"
+# PREZTO_GIT_REMOTE="git@github.com:sorin-ionescu/prezto.git"
 PROJECTS_PATH="${HOME}/Code"
 
-# If missing, download and extract the dotfiles repository
-if [[ ! -d $DOTFILES_PATH ]]; then
-    printf "$(tput setaf 7)Downloading dotfiles...\033[m\n"
-    # mkdir ${DOTFILES_PATH}
-    # Get the tarball
-    # curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOTFILES_TARBALL_URL}
-    # Extract to the dotfiles directory
-    # tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_PATH}
-    # Remove the tarball
-    # rm -rf ${HOME}/dotfiles.tar.gz
+# Download and extract the dotfiles repository, if missing
+if [[ ! -d "${DOTFILES_PATH}" ]]; then
+    printf "$(tput setaf 7)%s$(tput sgr0)\n" "Downloading dotfiles..."
+    curl -fsSLo "${HOME}/dotfiles.tar.gz" "${DOTFILES_TARBALL_URL}"
+    mkdir ${DOTFILES_PATH}
+    tar -zxf "${HOME}/dotfiles.tar.gz" --strip-components 1 -C "${DOTFILES_PATH}"
+    # rm -rf "${HOME}/dotfiles.tar.gz"
 fi
 
 source "${DOTFILES_PATH}/lib/help.sh"
@@ -26,33 +25,65 @@ source "${DOTFILES_PATH}/lib/list.sh"
 source "${DOTFILES_PATH}/lib/utils.sh"
 source "${DOTFILES_PATH}/lib/brew.sh"
 
-# Help text
-if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+# Display help
+if [[ "$#" -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]] || [[ "$1" == "help" ]] ; then
     run_help
     exit
 fi
 
-# List additional software to install
-if [[ "$1" == "-l" || "$1" == "--list" ]]; then
-    run_list
+# Run initialization
+if [[ "$1" == "init" ]] ; then
+    run_init
     exit
 fi
 
+# Run bootstrap
+if [[ "$1" == "bootstrap" ]] ; then
+    run_bootstrap
+    exit
+fi
+
+# Run setup
+if [[ "$1" == "setup" ]] ; then
+    run_setup
+    exit
+fi
+
+e_error "Wrong argument: $1"
+exit 2
+
+# for arg in "$@" ; do
+#     case "$arg" in
+#         -h|--help|help)
+#             run_help ;;
+#         init)
+#             run_init ;;
+#     esac
+# done
+
+# List additional software to install
+# if [[ "$1" == "-l" || "$1" == "--list" ]]; then
+#     run_list
+#     exit
+# fi
+
 # Test for known flags
-for opt in $@; do
-    case $opt in
-        --no-packages) no_packages=true ;;
-        --no-sync) no_sync=true ;;
-        -*|--*) e_warning "Warning: invalid option $opt." ;;
-    esac
-done
+# for opt in $@; do
+#     case $opt in
+#         --no-packages) no_packages=true ;;
+#         --no-sync) no_sync=true ;;
+#         -*|--*) e_warning "Warning: invalid option $opt." ;;
+#     esac
+# done
 
 # Check that current shell is ZSH
-if ! is_zsh_shell; then
+if ! is_zsh_shell ; then
     e_error "Zsh must be the default login shell."
     e_advice "Set zsh as default in System Preferences -> User & Groups"
     exit 1
 fi
+
+exit 1
 
 # Before relying on Homebrew, check that packages can be compiled
 if ! type_exists "gcc"; then

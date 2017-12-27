@@ -16,3 +16,34 @@ Licensed under the MIT license.
 EOT
 
 }
+
+# Install xcode tools
+# Install brew
+# Apply osx defaults
+run_init() {
+    ## Setup ComputerName and HostName
+    # TODO
+
+    # Install MacOS Software
+    e_header "Installing MacOS Software Updates..."
+    # ! softwareupdate --install --all --verbose
+
+    # Install Xcode Command Line Tools
+    e_header "Installing Xcode Command Line Tools..."
+    # ! xcode-select --install
+
+    ## Setup MacOS Defaults for Developers
+    # TODO
+
+    # Install brew
+    source "${DOTFILES_PATH}/lib/brew/install.sh"
+
+    # Install git
+    source "${DOTFILES_PATH}/lib/git/install.sh"
+
+    # Setup the dotfiles repository, if missing
+    if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then
+        e_header "Cloning dotfiles Repository..."
+        git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_PATH}"
+    fi
+}
