@@ -1,7 +1,6 @@
 #!/bin/bash
 
 run_help() {
-
     cat <<EOT
 OS X dotfiles - Giannicola Olivadoti - http://oli-g.me/
 Usage: $(basename "$0") [options]
@@ -14,7 +13,6 @@ Documentation can be found at https://github.com/oli-g/dotfiles/
 Copyright (c) Giannicola Olivadoti
 Licensed under the MIT license.
 EOT
-
 }
 
 # Install MacOS updates
@@ -55,5 +53,19 @@ run_init() {
     if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then
         e_header "Cloning dotfiles Repository..."
         git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_PATH}"
+    fi
+}
+
+# Update dotfiles repo
+# Symlink dotfiles
+# Update zsh plugins
+run_setup() {
+    # Update the dotfiles repository
+    if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then
+        e_header "Cloning dotfiles Repository..."
+        git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_PATH}"
+    else
+        e_header "Updating dotfiles Repository..."
+        git -C "${DOTFILES_PATH}" pull --rebase origin "${DOTFILES_GIT_BRANCH}"
     fi
 }
