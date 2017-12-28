@@ -1,18 +1,22 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
+# Load zplug
+export ZPLUG_HOME="/usr/local/opt/zplug"
+[[ -s "${ZPLUG_HOME}/init.zsh" ]] && source "${ZPLUG_HOME}/init.zsh"
 
-source "${ZPLUG_HOME}/init.zsh"
+# Install zplug modules, if needed
+zplug "zimfw/zimfw", depth:10
+if ! zplug check --verbose ; then
+    zplug install
+fi
 
-zplug load
+# Load zplug modules
+zplug load --verbose
 
+# Load zim
+export ZIM_HOME="${ZPLUG_REPOS}/zimfw/zimfw"
+[[ -s "${ZIM_HOME}/init.zsh" ]] && source "${ZIM_HOME}/init.zsh"
 
-
-
-
-
-
-
-
-
+# Load localrc
+[[ -s "${HOME}/.localrc" ]] && source "${HOME}/.localrc"
 
 
 
@@ -29,10 +33,6 @@ zplug load
 #     source $file
 # done
 # 
-# # Source .localrc for private variables and overrides
-# if [ -e "${HOME}/.localrc" ]; then
-#     source "${HOME}/.localrc"
-# fi
 # 
 # # Disable some Prezto aliases
 # alias rm='nocorrect rm'

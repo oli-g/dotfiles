@@ -31,27 +31,27 @@ run_init() {
 
     # Install MacOS Software
     e_header "Installing MacOS Software Updates..."
-    ! softwareupdate --install --all --verbose
+    # ! softwareupdate --install --all --verbose
 
     # Install Xcode Command Line Tools
     e_header "Installing Xcode Command Line Tools..."
-    ! xcode-select --install
+    # ! xcode-select --install
 
     ## Apply MacOS Defaults for Developers
     # TODO
 
     # Install brew
-    source "${DOTFILES_PATH}/lib/brew/install.sh"
+    # source "${DOTFILES_PATH}/lib/brew/install.sh"
 
     # Install git
-    source "${DOTFILES_PATH}/lib/git/install.sh"
+    # source "${DOTFILES_PATH}/lib/git/install.sh"
 
     # Install zsh
-    source "${DOTFILES_PATH}/lib/zsh/install.sh"
+    # source "${DOTFILES_PATH}/lib/zsh/install.sh"
 
     # Setup the dotfiles repository, if missing
     if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then
-        e_header "Cloning dotfiles Repository..."
+        e_header "Cloning dotfiles..."
         git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_PATH}"
     fi
 }
@@ -70,4 +70,19 @@ run_setup() {
             git -C "${DOTFILES_PATH}" pull --rebase origin "${DOTFILES_GIT_BRANCH}"
         fi
     fi
+
+    # Symlink dotfiles into home folder
+    e_header "Symlinking dotfiles..."
+    for file in $(find -H "${DOTFILES_PATH}/lib" -maxdepth 2 -name "*.symlink") ; do
+        ln -fs $file "${HOME}/.$(basename "${file%.*}")"
+    done
+
+    # Setup .localrc file into home folder
+    if [[ ! -e "${HOME}/.localrc" ]] ; then
+        e_header "Setting up .localrc file..."
+        cp "${DOTFILES_PATH}/lib/localrc.example" "${HOME}/.localrc"
+    fi
+
+    # Apply changes immediately
+    # source "${HOME}/.zshrc"
 }

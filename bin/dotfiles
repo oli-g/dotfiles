@@ -17,7 +17,7 @@ if [[ ! -d "${DOTFILES_PATH}" ]]; then
     curl -fsSLo "${HOME}/dotfiles.tar.gz" "${DOTFILES_TARBALL_URL}"
     mkdir ${DOTFILES_PATH}
     tar -zxf "${HOME}/dotfiles.tar.gz" --strip-components 1 -C "${DOTFILES_PATH}"
-    # rm -rf "${HOME}/dotfiles.tar.gz"
+    rm -rf "${HOME}/dotfiles.tar.gz"
 fi
 
 source "${DOTFILES_PATH}/lib/help.sh"
