@@ -62,10 +62,12 @@ run_init() {
 run_setup() {
     # Update the dotfiles repository
     if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then
-        e_header "Cloning dotfiles Repository..."
+        e_header "Cloning dotfiles..."
         git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_PATH}"
     else
-        e_header "Updating dotfiles Repository..."
-        git -C "${DOTFILES_PATH}" pull --rebase origin "${DOTFILES_GIT_BRANCH}"
+        ask_confirmation "Updating dotfiles..."
+        if is_confirmed ; then
+            git -C "${DOTFILES_PATH}" pull --rebase origin "${DOTFILES_GIT_BRANCH}"
+        fi
     fi
 }
