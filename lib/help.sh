@@ -17,22 +17,29 @@ EOT
 
 }
 
-# Install xcode tools
+# Install MacOS updates
+# Install Xcode tools
+# Apply MacOS defaults
 # Install brew
-# Apply osx defaults
+# Install git
+# Install zsh
+# Clone dotfiles repo
 run_init() {
+    # sudo -v
+    # while true ; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
     ## Setup ComputerName and HostName
     # TODO
 
     # Install MacOS Software
     e_header "Installing MacOS Software Updates..."
-    # ! softwareupdate --install --all --verbose
+    ! softwareupdate --install --all --verbose
 
     # Install Xcode Command Line Tools
     e_header "Installing Xcode Command Line Tools..."
-    # ! xcode-select --install
+    ! xcode-select --install
 
-    ## Setup MacOS Defaults for Developers
+    ## Apply MacOS Defaults for Developers
     # TODO
 
     # Install brew
@@ -40,6 +47,9 @@ run_init() {
 
     # Install git
     source "${DOTFILES_PATH}/lib/git/install.sh"
+
+    # Install zsh
+    source "${DOTFILES_PATH}/lib/zsh/install.sh"
 
     # Setup the dotfiles repository, if missing
     if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then

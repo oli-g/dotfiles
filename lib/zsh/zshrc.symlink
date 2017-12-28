@@ -1,31 +1,42 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Giannicola Olivadoti <olinicola@gmail.com>
-#
+export ZPLUG_HOME=/usr/local/opt/zplug
 
-# Source Prezto
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+source "${ZPLUG_HOME}/init.zsh"
 
-export PROJECTS_PATH="${HOME}/Code"
-export DOTFILES_PATH="${HOME}/.dotfiles"
+zplug load
 
-# Source dotfiles
-for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.zsh); do
-    source $file
-done
 
-# Source .localrc for private variables and overrides
-if [ -e "${HOME}/.localrc" ]; then
-    source "${HOME}/.localrc"
-fi
 
-# Disable some Prezto aliases
-alias rm='nocorrect rm'
-alias mv='nocorrect mv'
 
-# Disable autocorrect
-unsetopt CORRECT
+
+
+
+
+
+
+
+
+
+# # Source Prezto
+# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# fi
+# 
+# export PROJECTS_PATH="${HOME}/Code"
+# export DOTFILES_PATH="${HOME}/.dotfiles"
+# 
+# # Source dotfiles
+# for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.zsh); do
+#     source $file
+# done
+# 
+# # Source .localrc for private variables and overrides
+# if [ -e "${HOME}/.localrc" ]; then
+#     source "${HOME}/.localrc"
+# fi
+# 
+# # Disable some Prezto aliases
+# alias rm='nocorrect rm'
+# alias mv='nocorrect mv'
+# 
+# # Disable autocorrect
+# unsetopt CORRECT
