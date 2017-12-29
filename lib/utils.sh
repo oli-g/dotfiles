@@ -39,7 +39,7 @@ ask() {
 
 # Test whether the result of a confirmation is positive or not
 is_confirmed() {
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+    if [[ "$REPLY" =~ ^[Yy]$ ]] ; then
       return 0
     fi
     return 1
@@ -52,7 +52,7 @@ answer() {
 
 # Test whether the current shell is zsh
 is_zsh_shell() {
-    if [[ "$SHELL" =~ "zsh" ]]; then
+    if [[ "$SHELL" =~ "zsh" ]] ; then
         return 0
     fi
     return 1
@@ -60,7 +60,7 @@ is_zsh_shell() {
 
 # Test whether the current zsh shell is the system default one
 is_system_zsh_shell() {
-    if [[ "$SHELL" = "/bin/zsh" ]]; then
+    if [[ "$SHELL" = "/bin/zsh" ]] ; then
         return 0
     fi
     return 1   
@@ -69,7 +69,7 @@ is_system_zsh_shell() {
 # Test whether a command exists
 # $1 - cmd to test
 type_exists() {
-    if [ $(type -p $1) ]; then
+    if [ $(type -p $1) ] ; then
         return 0
     fi
     return 1

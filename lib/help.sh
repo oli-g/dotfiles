@@ -56,9 +56,14 @@ run_init() {
     fi
 }
 
+run_bootstrap() {
+    # brew bundle
+    echo "YEAH"
+}
+
 # Update dotfiles repo
 # Symlink dotfiles
-# Update zsh plugins
+# Update zplug plugins
 run_setup() {
     # Update the dotfiles repository
     if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then
@@ -83,6 +88,13 @@ run_setup() {
         cp "${DOTFILES_PATH}/lib/localrc.example" "${HOME}/.localrc"
     fi
 
-    # Apply changes immediately
-    # source "${HOME}/.zshrc"
+    # Update zplug plugins
+    if is_zsh_shell ; then
+        if type_exists "zplug" ; then
+            ask_confirmation "Updating zplug plugins..."
+            if is_confirmed ; then
+                zplug update
+            fi
+        fi
+    fi
 }

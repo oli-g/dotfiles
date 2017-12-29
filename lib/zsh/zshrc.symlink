@@ -56,26 +56,25 @@ export ZPLUG_HOME="/usr/local/opt/zplug"
 [[ -s "${ZPLUG_HOME}/init.zsh" ]] && source "${ZPLUG_HOME}/init.zsh"
 
 #
-# Install zplug modules, if needed
+# Define zplug plugins
 #
 
-zplug "zimfw/zimfw", depth:10
+export ZIM_HOME="${ZPLUG_REPOS}/zimfw/zimfw"
+zplug "zimfw/zimfw", as:"plugin", use:"init.zsh", at:"master", depth:1
+
+#
+# Install zplug plugins, if needed
+#
+
 if ! zplug check --verbose ; then
     zplug install
 fi
 
 #
-# Load zplug modules
+# Load zplug plugins
 #
 
 zplug load --verbose
-
-#
-# Load zim
-#
-
-export ZIM_HOME="${ZPLUG_REPOS}/zimfw/zimfw"
-[[ -s "${ZIM_HOME}/init.zsh" ]] && source "${ZIM_HOME}/init.zsh"
 
 #
 # Load localrc
