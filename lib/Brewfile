@@ -1,0 +1,17 @@
+cask_args appdir: "/Applications"
+
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "caskroom/cask"
+
+brew "git"
+brew "mas"
+brew "zplug"
+brew "zsh"
+
+# cask "google-chrome"
+# cask "iterm2"
+# cask "java" unless system "/usr/libexec/java_home --failfast"
+# cask "sublime-text"
+
+# mas "1Password", id: 443987910

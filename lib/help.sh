@@ -56,9 +56,59 @@ run_init() {
     fi
 }
 
+# Install brew apps (from ~/.Brewfile)
+# Install cask apps (from ~/.Brewfile)
+# Install AppStore apps (from ~/.Brewfile)
+# Install regular apps
+# Configure apps
 run_bootstrap() {
-    # brew bundle
-    echo "YEAH"
+    # Install brew
+    source "${DOTFILES_PATH}/lib/brew/install.sh"
+
+    # Install global brew bundle apps
+    ln -fs "${DOTFILES_PATH}/lib/Brewfile" "${HOME}/.Brewfile"
+    brew bundle --global
+
+    # Install local brew bundle apps
+    if [[ -e "${HOME}/.Brewfile.local" ]] ; then
+        brew bundle --file "${HOME}/.Brewfile.local"
+    fi
+
+    # Firefox
+    # Google Chrome
+    # Opera
+
+    # Filezilla
+    # iTerm 2
+    # ImageAlpha
+    # ImageOptim
+    # VirtualBox
+    # XAMPP
+
+    # Alfred
+    # Divvy
+    # Dropbox
+    # Flux
+    # KeePassX
+    # LimeChat
+    # Network Connect
+    # Skype
+    # uTorrent
+    # VLC
+
+    # source "${DOTFILES_PATH}/lib/brew/install.sh"
+    # source "${DOTFILES_PATH}/lib/zsh/install.sh"
+    # source "${DOTFILES_PATH}/lib/git/install.sh"
+    # source "${DOTFILES_PATH}/lib/sublime/install.sh"
+    # source "${DOTFILES_PATH}/lib/vim/install.sh"
+    # source "${DOTFILES_PATH}/lib/prezto/install.sh"
+    # source "${DOTFILES_PATH}/lib/ruby/install.sh"
+    # source "${DOTFILES_PATH}/lib/mysql/install.sh"
+    # source "${DOTFILES_PATH}/lib/postgresql/install.sh"
+    # source "${DOTFILES_PATH}/lib/go/install.sh"
+    # source "${DOTFILES_PATH}/lib/docker/install.sh"
+    # source "${DOTFILES_PATH}/lib/aws/install.sh"
+    # source "${DOTFILES_PATH}/lib/heroku/install.sh"
 }
 
 # Update dotfiles repo

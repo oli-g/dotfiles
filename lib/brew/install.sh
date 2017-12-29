@@ -11,9 +11,24 @@ else
     fi
 fi
 
-if ! tap_exists "caskroom/cask" ; then
-    e_header "Installing cask..."
-    brew tap "caskroom/cask"
+if ! formula_exists "mas" ; then
+    e_header "Installing mas..."
+    brew install mas
 else
-    brew cask doctor
+    ask_confirmation "Updating mas..."
+    if is_confirmed ; then
+        ! brew upgrade mas
+    fi
+fi
+
+if ! tap_exists "caskroom/cask" ; then
+    e_header "Installing cask tap..."
+    brew tap "caskroom/cask"
+    brew cask list
+fi
+
+if ! tap_exists "homebrew/bundle" ; then
+    e_header "Installing bundle tap..."
+    brew tap "homebrew/bundle"
+    brew bundle dump --global
 fi
