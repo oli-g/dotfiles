@@ -1,1 +1,10 @@
+#
+# Executes commands at login post-zshrc
+#
+
+
+#
+# Load zim
+#
+
 [[ -s "${ZIM_HOME}/login_init.zsh" ]] && source "${ZIM_HOME}/login_init.zsh"

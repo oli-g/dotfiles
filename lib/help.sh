@@ -31,23 +31,23 @@ run_init() {
 
     # Install MacOS Software
     e_header "Installing MacOS Software Updates..."
-    # ! softwareupdate --install --all --verbose
+    ! softwareupdate --install --all --verbose
 
     # Install Xcode Command Line Tools
     e_header "Installing Xcode Command Line Tools..."
-    # ! xcode-select --install
+    ! xcode-select --install
 
     ## Apply MacOS Defaults for Developers
     # TODO
 
     # Install brew
-    # source "${DOTFILES_PATH}/lib/brew/install.sh"
+    source "${DOTFILES_PATH}/lib/brew/install.sh"
 
     # Install git
-    # source "${DOTFILES_PATH}/lib/git/install.sh"
+    source "${DOTFILES_PATH}/lib/git/install.sh"
 
     # Install zsh
-    # source "${DOTFILES_PATH}/lib/zsh/install.sh"
+    source "${DOTFILES_PATH}/lib/zsh/install.sh"
 
     # Setup the dotfiles repository, if missing
     if [[ ! -d "${DOTFILES_PATH}/.git" ]] ; then

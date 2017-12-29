@@ -1,22 +1,87 @@
+#
+# Executes commands at the start of an interactive session
+#
+#
+# +----------------+-----------+-----------+------+
+# |                |Interactive|Interactive|Script|
+# |                |login      |non-login  |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zshenv     |    A      |    A      |  A   |
+# +----------------+-----------+-----------+------+
+# |~/.zshenv       |    B      |    B      |  B   |
+# +----------------+-----------+-----------+------+
+# |/etc/zprofile   |    C      |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zprofile     |    D      |           |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zshrc      |    E      |    C      |      |
+# +----------------+-----------+-----------+------+
+# |~/.zshrc        |    F      |    D      |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zlogin     |    G      |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zlogin       |    H      |           |      |
+# +----------------+-----------+-----------+------+
+# |                |           |           |      |
+# +----------------+-----------+-----------+------+
+# |                |           |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zlogout      |    I      |           |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zlogout    |    J      |           |      |
+# +----------------+-----------+-----------+------+
+#
+#
+# /etc/zshenv    # Read for every shell
+# ~/.zshenv      # Read for every shell except ones started with -f
+# /etc/zprofile  # Global config for login shells, read before zshrc
+# ~/.zprofile    # User config for login shells
+# /etc/zshrc     # Global config for interactive shells
+# ~/.zshrc       # User config for interactive shells
+# /etc/zlogin    # Global config for login shells, read after zshrc
+# ~/.zlogin      # User config for login shells
+# ~/.zlogout     # User config for login shells, read upon logout
+# /etc/zlogout   # Global config for login shells, read after user logout file
+#
+#
+# More info at http://zshwiki.org/home/config/files
+#
+
+
+#
 # Load zplug
+#
+
 export ZPLUG_HOME="/usr/local/opt/zplug"
 [[ -s "${ZPLUG_HOME}/init.zsh" ]] && source "${ZPLUG_HOME}/init.zsh"
 
+#
 # Install zplug modules, if needed
+#
+
 zplug "zimfw/zimfw", depth:10
 if ! zplug check --verbose ; then
     zplug install
 fi
 
+#
 # Load zplug modules
+#
+
 zplug load --verbose
 
+#
 # Load zim
+#
+
 export ZIM_HOME="${ZPLUG_REPOS}/zimfw/zimfw"
 [[ -s "${ZIM_HOME}/init.zsh" ]] && source "${ZIM_HOME}/init.zsh"
 
+#
 # Load localrc
-[[ -s "${HOME}/.localrc" ]] && source "${HOME}/.localrc"
+#
+
+[[ -s "${ZDOTDIR:-$HOME}/.localrc" ]] && source "${HOME}/.localrc"
 
 
 
