@@ -90,10 +90,10 @@ zplug load --verbose
 # fi
 # 
 # export PROJECTS_PATH="${HOME}/Code"
-# export DOTFILES_PATH="${HOME}/.dotfiles"
+# export DOTFILES_HOME="${HOME}/.dotfiles"
 # 
 # # Source dotfiles
-# for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.zsh); do
+# for file in $(find "${DOTFILES_HOME}/lib" -depth 2 -name *.zsh); do
 #     source $file
 # done
 # 

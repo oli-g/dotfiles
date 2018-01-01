@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# TODO
+# https://github.com/cowboy/dotfiles/blob/master/bin/osx_create_installer
+# https://github.com/bkuhlmann/mac_os/blob/master/bin/create_boot_disk

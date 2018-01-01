@@ -1,17 +1,60 @@
+# TODO
+# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L472
 cask_args appdir: "/Applications"
 
+# TODO
+# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L349
 tap "homebrew/core"
 tap "homebrew/bundle"
 tap "caskroom/cask"
 
+# TODO
+# https://github.com/cowboy/dotfiles/blob/master/init/30_osx_homebrew_recipes.sh
+# https://github.com/mathiasbynens/dotfiles/blob/master/brew.sh
+# https://github.com/donnemartin/dev-setup/blob/master/brew.sh
+# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L370
+# https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_homebrew_formulas
+# https://github.com/hql287/dotfiles/blob/master/Brewfile
 brew "git"
 brew "mas"
 brew "zplug"
 brew "zsh"
 
+
+# TODO
+# https://github.com/cowboy/dotfiles/blob/master/init/30_osx_homebrew_casks.sh
+# https://github.com/donnemartin/dev-setup/blob/master/brew.sh
+# https://github.com/donnemartin/dev-setup/blob/master/android.sh
+# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L491
+# https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_homebrew_casks
 # cask "google-chrome"
 # cask "iterm2"
 # cask "java" unless system "/usr/libexec/java_home --failfast"
 # cask "sublime-text"
 
+# TODO
+# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L587
+# https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_app_store
 # mas "1Password", id: 443987910
+
+# Firefox
+# Google Chrome
+# Opera
+
+# Filezilla
+# iTerm 2
+# ImageAlpha
+# ImageOptim
+# VirtualBox
+# XAMPP
+
+# Alfred
+# Divvy
+# Dropbox
+# Flux
+# KeePassX
+# LimeChat
+# Network Connect
+# Skype
+# uTorrent
+# VLC

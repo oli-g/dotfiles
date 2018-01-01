@@ -3,36 +3,40 @@
 set -euo pipefail
 
 # Setup dotfiles environment variables
-DOTFILES_PATH="${HOME}/.dotfiles"
+DOTFILES_HOME="${HOME}/.dotfiles"
 DOTFILES_GIT_REMOTE="git@github.com:oli-g/dotfiles.git"
 DOTFILES_GIT_BRANCH="revamp"
 DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/${DOTFILES_GIT_BRANCH}"
+
+# TODO
+# https://github.com/cowboy/dotfiles/blob/master/bin/dotfiles
 
 # PREZTO_PATH="${HOME}/.zprezto"
 # PREZTO_GIT_REMOTE="git@github.com:sorin-ionescu/prezto.git"
 # PROJECTS_PATH="${HOME}/Code"
 
 # Download and extract the dotfiles repository, if missing
-if [[ ! -d "${DOTFILES_PATH}" ]]; then
+if [[ ! -d "${DOTFILES_HOME}" ]] ; then
     printf "$(tput setaf 7)%s$(tput sgr0)\n" "Downloading dotfiles..."
     curl -fsSLo "${HOME}/dotfiles.tar.gz" "${DOTFILES_TARBALL_URL}"
-    mkdir ${DOTFILES_PATH}
-    tar -zxf "${HOME}/dotfiles.tar.gz" --strip-components 1 -C "${DOTFILES_PATH}"
+    mkdir ${DOTFILES_HOME}
+    tar -zxf "${HOME}/dotfiles.tar.gz" --strip-components 1 -C "${DOTFILES_HOME}"
     rm -rf "${HOME}/dotfiles.tar.gz"
 fi
 
-source "${DOTFILES_PATH}/lib/help.sh"
-source "${DOTFILES_PATH}/lib/utils.sh"
-source "${DOTFILES_PATH}/lib/brew.sh"
+source "${DOTFILES_HOME}/lib/utils.sh"
+source "${DOTFILES_HOME}/lib/brew.sh"
 
 # Display help
 if [[ "$#" -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]] || [[ "$1" == "help" ]] ; then
+    source "${DOTFILES_HOME}/lib/help.sh"
     run_help
     exit
 fi
 
 # Run initialization
 if [[ "$1" == "init" ]] ; then
+    source "${DOTFILES_HOME}/lib/init.sh"
     run_init
     e_success "Dotfiles correctly installed"
     exit
@@ -40,6 +44,7 @@ fi
 
 # Run bootstrap
 if [[ "$1" == "bootstrap" ]] ; then
+    source "${DOTFILES_HOME}/lib/bootstrap.sh"
     run_bootstrap
     e_success "Dotfiles correctly bootstrapped"
     exit
@@ -47,6 +52,7 @@ fi
 
 # Run setup
 if [[ "$1" == "setup" ]] ; then
+    source "${DOTFILES_HOME}/lib/setup.sh"
     run_setup
     e_success "Dotfiles correctly set up"
     exit
