@@ -15,7 +15,10 @@ if [[ ! -e "${HOME}/.zshrc" ]] ; then
 fi
 
 grep -q -F "/usr/local/bin/zsh" "/private/etc/shells" || echo "/usr/local/bin/zsh" | sudo tee -a "/private/etc/shells"
-chsh -s "/usr/local/bin/zsh" $USER
+
+if ! is_zsh_shell || is_system_zsh_shell ; then
+    chsh -s "/usr/local/bin/zsh" $USER
+fi
 
 if ! formula_exists "zplug" ; then
     e_header "Installing zplug..."

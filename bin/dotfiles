@@ -19,7 +19,7 @@ DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/${DOTFILES_GIT_B
 if [[ ! -d "${DOTFILES_HOME}" ]] ; then
     printf "$(tput setaf 7)%s$(tput sgr0)\n" "Downloading dotfiles..."
     curl -fsSLo "${HOME}/dotfiles.tar.gz" "${DOTFILES_TARBALL_URL}"
-    mkdir ${DOTFILES_HOME}
+    mkdir -p ${DOTFILES_HOME}
     tar -zxf "${HOME}/dotfiles.tar.gz" --strip-components 1 -C "${DOTFILES_HOME}"
     rm -rf "${HOME}/dotfiles.tar.gz"
 fi
@@ -30,7 +30,7 @@ source "${DOTFILES_HOME}/lib/brew.sh"
 # Display help
 if [[ "$#" -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]] || [[ "$1" == "help" ]] ; then
     source "${DOTFILES_HOME}/lib/help.sh"
-    run_help
+    display_help
     exit
 fi
 
@@ -38,7 +38,7 @@ fi
 if [[ "$1" == "init" ]] ; then
     source "${DOTFILES_HOME}/lib/init.sh"
     run_init
-    e_success "Dotfiles correctly installed"
+    e_success "Dotfiles correctly initialized"
     exit
 fi
 

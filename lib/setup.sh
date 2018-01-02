@@ -21,10 +21,10 @@ run_setup() {
         ln -fs $file "${HOME}/.$(basename "${file%.*}")"
     done
 
-    # Setup .localrc file into home folder
-    if [[ ! -e "${HOME}/.localrc" ]] ; then
-        e_header "Setting up .localrc file..."
-        cp "${DOTFILES_HOME}/lib/localrc.example" "${HOME}/.localrc"
+    # Setup .zshrc.local file into home folder
+    if [[ ! -e "${HOME}/.zshrc.local" ]] ; then
+        e_header "Setting up .zshrc.local file..."
+        cp "${DOTFILES_HOME}/lib/zshrc.local.example" "${HOME}/.zshrc.local"
     fi
 
     # Update zplug plugins

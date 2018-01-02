@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Setup ComputerName and HostName
 # Install brew apps (from ~/.Brewfile)
 # Install cask apps (from ~/.Brewfile)
 # Install AppStore apps (from ~/.Brewfile)
@@ -7,6 +8,13 @@
 # Configure apps
 # Apply MacOS defaults
 run_bootstrap() {
+    # ask_admin_password
+
+    ## Setup ComputerName and HostName
+    # TODO
+    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L126
+    # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/apply_basic_settings
+
     # Install brew
     source "${DOTFILES_HOME}/lib/brew/install.sh"
 
@@ -44,6 +52,7 @@ run_brew_bundle() {
 
 apply_macos_defaults() {
     # TODO
+    # https://www.google.it/search?client=safari&rls=en&q=dotfiles+softwareupdate&ie=UTF-8&oe=UTF-8&gfe_rd=cr&dcr=0&ei=gnhLWo_oKYLA8ge5w5uIBw#cns=0&gfe_rd=cr
     # https://github.com/mathiasbynens/dotfiles/blob/master/.macos
     # https://github.com/holman/dotfiles/blob/master/macos/set-defaults.sh
     # https://github.com/necolas/dotfiles/blob/master/bin/osxdefaults

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-run_help() {
+display_help() {
     cat <<EOT
 OS X dotfiles - Giannicola Olivadoti - http://oli-g.me/
 Usage: $(basename "$0") [options]

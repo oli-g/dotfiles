@@ -25,6 +25,16 @@ e_warning() {
     printf "$(tput setaf 136)! %s$(tput sgr0)\n" "$@"
 }
 
+# Ask for administrator password, and keep it alive in background
+ask_admin_password() {
+    # Ask for the administrator password upfront
+    sudo -v
+    # Keep-alive: update existing sudo time stamp if set, until current script has finished
+    # This does not work with Homebrew, since it explicitly invalidates the sudo timestamp
+    # See https://gist.github.com/cowboy/3118588
+    while true; do sudo -n true; sleep 20; kill -0 "$$" || exit; done 2>/dev/null &
+}
+
 # Ask for confirmation before proceeding
 ask_confirmation() {
     e_warning "$@"

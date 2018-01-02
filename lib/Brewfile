@@ -7,6 +7,7 @@ cask_args appdir: "/Applications"
 tap "homebrew/core"
 tap "homebrew/bundle"
 tap "caskroom/cask"
+tap "caskroom/versions"
 
 # TODO
 # https://github.com/cowboy/dotfiles/blob/master/init/30_osx_homebrew_recipes.sh
@@ -16,6 +17,7 @@ tap "caskroom/cask"
 # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_homebrew_formulas
 # https://github.com/hql287/dotfiles/blob/master/Brewfile
 brew "git"
+brew "git-flow"
 brew "mas"
 brew "zplug"
 brew "zsh"
@@ -27,10 +29,19 @@ brew "zsh"
 # https://github.com/donnemartin/dev-setup/blob/master/android.sh
 # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L491
 # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_homebrew_casks
-# cask "google-chrome"
-# cask "iterm2"
+cask "atom"
+cask "dropbox"
+cask "firefox"
+cask "google-chrome"
+cask "iterm2"
+# https://gist.github.com/ntamvl/5f4dbaa8f68e6897b99682a395a44c2e
+# https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac/28635465
 # cask "java" unless system "/usr/libexec/java_home --failfast"
-# cask "sublime-text"
+cask "skype"
+cask "slack"
+cask "sourcetree"
+cask "sublime-text"
+cask "vlc"
 
 # TODO
 # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L587

@@ -7,28 +7,23 @@
 # Install zsh
 # Clone dotfiles repo
 run_init() {
-    # TODO
-    # https://github.com/donnemartin/dev-setup/blob/master/osxprep.sh
-    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L119
-    # sudo -v
-    # while true ; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    ask_admin_password
 
-    ## Setup ComputerName and HostName
-    # TODO
-    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L126
-    # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/apply_basic_settings
-
-    # Install MacOS Software
-    e_header "Installing MacOS Software Updates..."
-    ! softwareupdate --install --all --verbose
+    # Install MacOS Software Updates
+    ask_confirmation "Installing MacOS Software Software..."
+    if is_confirmed ; then
+        ! softwareupdate --install --all --verbose
+    fi
 
     # Install Xcode Command Line Tools
-    e_header "Installing Xcode Command Line Tools..."
     # TODO
     # https://github.com/AndrewSB/dotfiles/blob/master/machine-setup-functions.sh#L9
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L307
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L620
-    ! xcode-select --install
+    ask_confirmation "Installing Xcode Command Line Tools..."
+    if is_confirmed ; then
+        ! xcode-select --install
+    fi
 
     # Install brew
     source "${DOTFILES_HOME}/lib/brew/install.sh"

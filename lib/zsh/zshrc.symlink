@@ -77,10 +77,10 @@ fi
 zplug load --verbose
 
 #
-# Load localrc
+# Load .zshrc.local
 #
 
-[[ -s "${ZDOTDIR:-$HOME}/.localrc" ]] && source "${HOME}/.localrc"
+[[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
 
 
