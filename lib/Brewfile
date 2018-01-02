@@ -35,13 +35,16 @@ brew "zsh"
 # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L491
 # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_homebrew_casks
 cask "atom"
+cask "docker"
 cask "dropbox"
 cask "firefox"
+cask "gitup"
 cask "google-chrome"
 cask "iterm2"
 # https://gist.github.com/ntamvl/5f4dbaa8f68e6897b99682a395a44c2e
 # https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac/28635465
 # cask "java" unless system "/usr/libexec/java_home --failfast"
+cask "rowanj-gitx"
 cask "skype"
 cask "slack"
 cask "sourcetree"

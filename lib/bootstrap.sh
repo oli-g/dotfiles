@@ -20,9 +20,6 @@ run_bootstrap() {
 
     run_brew_bundle
 
-    # source "${DOTFILES_HOME}/lib/brew/install.sh"
-    # source "${DOTFILES_HOME}/lib/zsh/install.sh"
-    # source "${DOTFILES_HOME}/lib/git/install.sh"
     # source "${DOTFILES_HOME}/lib/sublime/install.sh"
     # source "${DOTFILES_HOME}/lib/vim/install.sh"
     # source "${DOTFILES_HOME}/lib/prezto/install.sh"
@@ -34,9 +31,12 @@ run_bootstrap() {
     # source "${DOTFILES_HOME}/lib/aws/install.sh"
     # source "${DOTFILES_HOME}/lib/heroku/install.sh"
 
-    ## Apply MacOS Defaults for Developers
-    # TODO
-    apply_macos_defaults
+    source "${DOTFILES_HOME}/lib/iterm/install.sh"
+
+    ask_confirmation "Applying MacOS Defaults for Developers..."
+    if is_confirmed ; then
+        apply_macos_defaults
+    fi
 }
 
 run_basic_setup() {
@@ -63,6 +63,8 @@ run_brew_bundle() {
 }
 
 apply_macos_defaults() {
+    ## Apply MacOS Defaults for Developers
+
     # TODO
     # https://www.google.it/search?client=safari&rls=en&q=dotfiles+softwareupdate&ie=UTF-8&oe=UTF-8&gfe_rd=cr&dcr=0&ei=gnhLWo_oKYLA8ge5w5uIBw#cns=0&gfe_rd=cr
     # https://github.com/mathiasbynens/dotfiles/blob/master/.macos
@@ -71,10 +73,12 @@ apply_macos_defaults() {
     # https://github.com/matijs/dotfiles/blob/master/osx.sh
     # https://github.com/skwp/dotfiles/blob/master/bin/macos
     # https://github.com/donnemartin/dev-setup/blob/master/osx.sh
+    # https://github.com/donnemartin/dev-setup/blob/master/osx.sh#L641
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L1525
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L2668
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L3159
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L3291
     # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/apply_default_settings
+
     echo "Yeah"
 }

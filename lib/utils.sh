@@ -7,7 +7,7 @@ e_header() {
 
 # Advice logging
 e_advice() {
-    printf "$(tput setaf 7)  %s$(tput sgr0)\n" "$@"
+    printf "$(tput setaf 7)| %s$(tput sgr0)\n" "$@"
 }
 
 # Success logging

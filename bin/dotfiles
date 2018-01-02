@@ -19,7 +19,7 @@ DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/${DOTFILES_GIT_B
 if [[ ! -d "${DOTFILES_HOME}" ]] ; then
     printf "$(tput setaf 7)%s$(tput sgr0)\n" "Downloading dotfiles..."
     curl -fsSLo "${HOME}/dotfiles.tar.gz" "${DOTFILES_TARBALL_URL}"
-    mkdir -p ${DOTFILES_HOME}
+    mkdir -p "${DOTFILES_HOME}"
     tar -zxf "${HOME}/dotfiles.tar.gz" --strip-components 1 -C "${DOTFILES_HOME}"
     rm -rf "${HOME}/dotfiles.tar.gz"
 fi
