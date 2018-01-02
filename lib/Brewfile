@@ -1,12 +1,17 @@
 # TODO
 # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L472
-cask_args appdir: "/Applications"
+cask_args appdir: "/Applications",
+          fontdir: "/Library/Fonts",
+          input_methoddir: "/Library/Input Methods",
+          prefpanedir: "/Library/PreferencePanes",
+          screen_saverdir: "/Library/Screen Savers"
 
 # TODO
 # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L349
 tap "homebrew/core"
 tap "homebrew/bundle"
 tap "caskroom/cask"
+tap "caskroom/fonts"
 tap "caskroom/versions"
 
 # TODO

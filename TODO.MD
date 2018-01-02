@@ -27,9 +27,6 @@ https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L1590
 https://github.com/mathiasbynens/dotfiles/blob/master/.functions
 https://github.com/donnemartin/dev-setup/blob/master/.functions
 
-# COMPLETE SETUP
-https://github.com/ptb/mac-setup/blob/develop/mac-setup.org
-
 # BACKUP
 https://github.com/necolas/dotfiles#bootable-backup-drive-script
 https://github.com/necolas/dotfiles/blob/master/bin/backup

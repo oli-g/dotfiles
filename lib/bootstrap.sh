@@ -4,16 +4,16 @@
 # Install brew apps (from ~/.Brewfile)
 # Install cask apps (from ~/.Brewfile)
 # Install AppStore apps (from ~/.Brewfile)
-# Install regular apps
+# Install other apps
 # Configure apps
 # Apply MacOS defaults
 run_bootstrap() {
-    # ask_admin_password
+    ask_admin_password
 
-    ## Setup ComputerName and HostName
-    # TODO
-    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L126
-    # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/apply_basic_settings
+    ask_confirmation "Setting up Computer name and Host name..."
+    if is_confirmed ; then
+        run_basic_setup
+    fi
 
     # Install brew
     source "${DOTFILES_HOME}/lib/brew/install.sh"
@@ -37,6 +37,18 @@ run_bootstrap() {
     ## Apply MacOS Defaults for Developers
     # TODO
     apply_macos_defaults
+}
+
+run_basic_setup() {
+    ## Setup ComputerName and HostName
+    ask "Computer Name"
+    computer_name=$(answer)
+    ask "Host Name"
+    host_name=$(answer)
+    sudo scutil --set ComputerName "${computer_name}"
+    sudo scutil --set HostName "${host_name}"
+    sudo scutil --set LocalHostName "${host_name}"
+    sudo defaults write "/Library/Preferences/SystemConfiguration/com.apple.smb.server" NetBIOSName -string "${host_name}"
 }
 
 run_brew_bundle() {
@@ -64,4 +76,5 @@ apply_macos_defaults() {
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L3159
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L3291
     # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/apply_default_settings
+    echo "Yeah"
 }
