@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+MACOS_BOOT_DISK_PATH="${1%/}" # "/Volumes/Untitled" 
+MACOS_INSTALLER_PATH="/Applications/Install macOS High Sierra.app"
+MACOS_BOOT_DISK_CREATOR="${MACOS_INSTALLER_PATH}/Contents/Resources/createinstallmedia"
+
+if [[ ! -d "${MACOS_INSTALLER_PATH}" ]] ; then
+    printf "ERROR: MacOS installer does not exist: $MAC_OS_INSTALLER_PATH. Use the App Store to download.\n"
+    exit 1
+fi
+
+if [[ ! -d "${MACOS_BOOT_DISK_PATH}" ]] ; then
+    printf "ERROR: Boot disk must be mounted at: $MAC_OS_BOOT_DISK_PATH.\n"
+    exit 1
+fi
+
+sudo "${MACOS_BOOT_DISK_CREATOR}" --volume "${MACOS_BOOT_DISK_PATH}" --applicationpath "${MACOS_INSTALLER_PATH}" --nointeraction
+
+# TODO
+# https://github.com/cowboy/dotfiles/blob/master/bin/osx_create_installer
+# https://github.com/bkuhlmann/mac_os/blob/master/bin/create_boot_disk

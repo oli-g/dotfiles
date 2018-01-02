@@ -63,22 +63,6 @@ run_brew_bundle() {
 }
 
 apply_macos_defaults() {
-    ## Apply MacOS Defaults for Developers
-
-    # TODO
-    # https://www.google.it/search?client=safari&rls=en&q=dotfiles+softwareupdate&ie=UTF-8&oe=UTF-8&gfe_rd=cr&dcr=0&ei=gnhLWo_oKYLA8ge5w5uIBw#cns=0&gfe_rd=cr
-    # https://github.com/mathiasbynens/dotfiles/blob/master/.macos
-    # https://github.com/holman/dotfiles/blob/master/macos/set-defaults.sh
-    # https://github.com/necolas/dotfiles/blob/master/bin/osxdefaults
-    # https://github.com/matijs/dotfiles/blob/master/osx.sh
-    # https://github.com/skwp/dotfiles/blob/master/bin/macos
-    # https://github.com/donnemartin/dev-setup/blob/master/osx.sh
-    # https://github.com/donnemartin/dev-setup/blob/master/osx.sh#L641
-    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L1525
-    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L2668
-    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L3159
-    # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L3291
-    # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/apply_default_settings
-
-    echo "Yeah"
+    # Apply MacOS Defaults
+    source "${DOTFILES_HOME}/bin/macos_apply_defaults"
 }
