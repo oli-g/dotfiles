@@ -5,6 +5,8 @@ set -euo pipefail
 ## Apply MacOS Defaults for Developers
 
 # TODO
+# http://osxnotes.net/defaults.html
+# https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
 # https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 # https://github.com/holman/dotfiles/blob/master/macos/set-defaults.sh
 # https://github.com/necolas/dotfiles/blob/master/bin/osxdefaults
