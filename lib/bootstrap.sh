@@ -18,7 +18,10 @@ run_bootstrap() {
     # Install brew
     source "${DOTFILES_HOME}/lib/brew/install.sh"
 
-    run_brew_bundle
+    ask_confirmation "Installing packages and apps with Brew..."
+    if is_confirmed ; then
+        run_brew_bundle
+    fi
 
     # source "${DOTFILES_HOME}/lib/sublime/install.sh"
     # source "${DOTFILES_HOME}/lib/vim/install.sh"
@@ -52,13 +55,23 @@ run_basic_setup() {
 }
 
 run_brew_bundle() {
+    if ! is_signed_in ; then
+        e_warning "Please signin to the App Store..."
+        open -a "/Applications/App Store.app"
+        until is_signed_in ; do
+            sleep 3
+        done
+    fi
+
     # Install global brew bundle apps
     ln -fs "${DOTFILES_HOME}/lib/Brewfile" "${HOME}/.Brewfile"
+    e_header "Bundling from ${HOME}/.Brewfile..."
     brew bundle --global
 
     # Install local brew bundle apps
     if [[ -e "${HOME}/.Brewfile.local" ]] ; then
-        brew bundle --file "${HOME}/.Brewfile.local"
+        e_header "Bundling from ${HOME}/.Brewfile.local..."
+        brew bundle --file="${HOME}/.Brewfile.local"
     fi
 }
 

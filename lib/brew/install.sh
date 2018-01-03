@@ -32,3 +32,7 @@ if ! tap_exists "homebrew/bundle" ; then
     brew tap "homebrew/bundle"
     brew bundle dump --global
 fi
+
+if [[ ! -e "${HOME}/.Brewfile.local" ]] ; then
+    cp "${DOTFILES_HOME}/lib/Brewfile.local" "${HOME}/.Brewfile.local"
+fi

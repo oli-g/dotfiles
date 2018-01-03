@@ -1,0 +1,7 @@
+cask_args appdir: "/Applications",
+          fontdir: "/Library/Fonts",
+          input_methoddir: "/Library/Input Methods",
+          prefpanedir: "/Library/PreferencePanes",
+          screen_saverdir: "/Library/Screen Savers"
+
+# mas "1Password", id: 443987910

@@ -19,7 +19,7 @@ The command will install basic dependencies like Xcode Command Line Tools, Brew,
 In order to actually activate the dotfiles, run:
 
 ```
-cd `$HOME/.dotfiles`
+cd "$HOME/.dotfiles"
 bin/dotfiles setup
 ```
 
