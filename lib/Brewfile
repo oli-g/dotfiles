@@ -6,24 +6,52 @@ cask_args appdir: "/Applications",
           prefpanedir: "/Library/PreferencePanes",
           screen_saverdir: "/Library/Screen Savers"
 
-# TODO
-# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L349
 tap "homebrew/core"
 tap "homebrew/bundle"
 tap "caskroom/cask"
 tap "caskroom/fonts"
 tap "caskroom/versions"
 
-# TODO
-# https://github.com/cowboy/dotfiles/blob/master/init/30_osx_homebrew_recipes.sh
-# https://github.com/mathiasbynens/dotfiles/blob/master/brew.sh
-# https://github.com/donnemartin/dev-setup/blob/master/brew.sh
-# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L370
-# https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_homebrew_formulas
-# https://github.com/hql287/dotfiles/blob/master/Brewfile
+# https://docs.brew.sh/Versions.html
+# https://github.com/mathiasbynens/dotfiles/blob/master/brew.sh#L52
+# 
+# brew "asciinema"
+brew "awscli"
+# brew "ccat"
+# brew "chruby"
+# brew "desk"
+# brew "direnv"
 brew "git"
+# brew "git-extras"
 brew "git-flow"
+# TODO
+# http://tammersaleh.com/posts/manage-your-gopath-with-direnv/
+# https://github.com/direnv/direnv/wiki/golang
+# http://rachbelaid.com/handling-go-workspace-with-direnv/
+# https://github.com/direnv/direnv
+# https://direnv.net/
+# https://www.reddit.com/r/golang/comments/40ps8k/really_wrestling_with_gopath/
+# http://sourabhbajaj.com/mac-setup/Go/README.html
+# https://stackoverflow.com/questions/21499337/cannot-set-gopath-on-mac-osx
+# https://medium.com/@AkyunaAkish/setting-up-a-golang-development-environment-mac-os-x-d58e5a7ea24f
+# brew "go"
+# brew "heroku-toolbelt"
+brew "htop"
+brew "httpie"
+# brew "hub"
+# brew "jq"
 brew "mas"
+brew "mercurial"
+# brew "ngrep"
+# brew "reattach-to-user-namespace"
+# brew "ruby-install"
+# brew "rust"
+# brew "screen"
+# brew "terraform"
+# brew "tig"
+# brew "tmux"
+# brew "tree"
+# brew "vim" # --with-override-system-vi
 brew "zplug"
 brew "zsh"
 
@@ -45,7 +73,10 @@ brew "zsh"
 # LimeChat
 # Network Connect
 
+# cask "adium"
+# cask "alfred"
 cask "atom"
+# cask "charles"
 cask "docker"
 cask "dropbox"
 cask "firefox"
@@ -55,15 +86,20 @@ cask "iterm2"
 # https://gist.github.com/ntamvl/5f4dbaa8f68e6897b99682a395a44c2e
 # https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac/28635465
 # cask "java" unless system "/usr/libexec/java_home --failfast"
+cask "macdown"
 cask "rowanj-gitx"
 cask "skype"
 cask "slack"
 cask "sourcetree"
 cask "sublime-text"
+# cask "vagrant"
 # cask "virtualbox"
 cask "vlc"
+# cask "wireshark"
 
 # TODO
 # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L587
 # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_app_store
+# mas "Coffitivity", id: 659901392
 mas "Evernote", id: 406056744
+# mas "Xcode", id: 497799835
