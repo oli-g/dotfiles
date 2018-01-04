@@ -5,7 +5,7 @@ set -euo pipefail
 # Setup dotfiles environment variables
 DOTFILES_HOME="${HOME}/.dotfiles"
 DOTFILES_GIT_REMOTE="git@github.com:oli-g/dotfiles.git"
-DOTFILES_GIT_BRANCH="revamp"
+DOTFILES_GIT_BRANCH="master"
 DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/${DOTFILES_GIT_BRANCH}"
 
 # TODO

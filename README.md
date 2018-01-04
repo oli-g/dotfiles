@@ -11,7 +11,7 @@ TODO check https://github.com/necolas/dotfiles
 For fist-time installation, run:
 
 ```
-bash -c "$(curl -fsSL raw.github.com/oli-g/dotfiles/revamp/bin/dotfiles)" -- init
+bash -c "$(curl -fsSL raw.github.com/oli-g/dotfiles/master/bin/dotfiles)" -- init
 ```
 
 The command will install basic dependencies like Xcode Command Line Tools, Brew, Git and Zsh, and it will clone this repository into `$HOME/.dotfiles` folder.
