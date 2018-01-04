@@ -9,3 +9,13 @@ else
         brew update
     fi
 fi
+
+if ! formula_exists "cask"; then
+    e_header "Installing cack..."
+    brew install caskroom/cask/brew-cask
+else
+    ask_confirmation "Updating cask..."
+    if is_confirmed; then
+    	brew upgrade brew-cask
+    fi
+fi

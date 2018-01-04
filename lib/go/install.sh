@@ -9,7 +9,7 @@ if ! formula_exists "go"; then
     fi
 
     export GOPATH="${PROJECTS_PATH}/go"
-    export GOROOT="$(brew --prefix)/opt/go/libexec"
+    export GOROOT="/usr/local/opt/go/libexec"
     if [[ ! -d "${GOPATH}/bin" ]]; then
         mkdir -p "${GOPATH}/bin"
     fi
@@ -19,6 +19,8 @@ if ! formula_exists "go"; then
     go get golang.org/x/tools/cmd/godoc
     e_header "Installing vet..."
     go get golang.org/x/tools/cmd/vet
+    e_header "Installing godep"
+    go get github.com/tools/godep
 else
     ask_confirmation "Updating go..."
     if is_confirmed; then

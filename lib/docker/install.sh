@@ -18,6 +18,15 @@ else
     ask_confirmation "Updating boot2docker..."
     if is_confirmed; then
         brew upgrade boot2docker
-        boot2docker upgrade
+    fi
+fi
+
+if ! formula_exists "docker-compose"; then
+    e_header "Installing docker-compose..."
+    brew install docker-compose
+else
+    ask_confirmation "Updating docker-compose..."
+    if is_confirmed; then
+        brew upgrade docker-compose
     fi
 fi

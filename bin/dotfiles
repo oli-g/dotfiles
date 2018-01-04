@@ -61,19 +61,29 @@ if ! type_exists "gcc"; then
     exit 1
 fi
 
-source "${DOTFILES_PATH}/lib/brew/install.sh"
-source "${DOTFILES_PATH}/lib/zsh/install.sh"
-source "${DOTFILES_PATH}/lib/git/install.sh"
-source "${DOTFILES_PATH}/lib/sublime/install.sh"
-source "${DOTFILES_PATH}/lib/vim/install.sh"
-source "${DOTFILES_PATH}/lib/prezto/install.sh"
-source "${DOTFILES_PATH}/lib/ruby/install.sh"
-source "${DOTFILES_PATH}/lib/go/install.sh"
-source "${DOTFILES_PATH}/lib/docker/install.sh"
+# source "${DOTFILES_PATH}/lib/brew/install.sh"
+# source "${DOTFILES_PATH}/lib/zsh/install.sh"
+# source "${DOTFILES_PATH}/lib/git/install.sh"
+# source "${DOTFILES_PATH}/lib/sublime/install.sh"
+# source "${DOTFILES_PATH}/lib/vim/install.sh"
+# source "${DOTFILES_PATH}/lib/prezto/install.sh"
+# source "${DOTFILES_PATH}/lib/ruby/install.sh"
+# source "${DOTFILES_PATH}/lib/mysql/install.sh"
+# source "${DOTFILES_PATH}/lib/postgresql/install.sh"
+# source "${DOTFILES_PATH}/lib/go/install.sh"
+# source "${DOTFILES_PATH}/lib/docker/install.sh"
+# source "${DOTFILES_PATH}/lib/aws/install.sh"
+# source "${DOTFILES_PATH}/lib/heroku/install.sh"
 
+e_header "Symlinking dotfiles..."
 for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.symlink); do
     # Force create or replace the symlink
     ln -fs $file "${HOME}/.$(basename "${file%.*}")"
 done
+
+if ! [ -e "${HOME}/.localrc" ]; then
+    e_header "Setting up localrc file..."
+    cp "${DOTFILES_PATH}/lib/localrc.example" "${HOME}/.localrc"
+fi
 
 e_success "Dotfiles installed"

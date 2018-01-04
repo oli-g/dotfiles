@@ -26,3 +26,6 @@ fi
 # Disable some Prezto aliases
 alias rm='nocorrect rm'
 alias mv='nocorrect mv'
+
+# Disable autocorrect
+unsetopt CORRECT

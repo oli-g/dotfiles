@@ -1,5 +1,5 @@
 export GOPATH="${PROJECTS_PATH}/go"
-export GOROOT="$(brew --prefix)/opt/go/libexec"
+export GOROOT="/usr/local/opt/go/libexec"
 
 path=(
   $GOPATH/bin
