@@ -39,6 +39,7 @@ brew "git-flow"
 brew "htop"
 brew "httpie"
 # brew "hub"
+# brew "jenv"
 # brew "jq"
 brew "mas"
 brew "mercurial"
@@ -85,15 +86,19 @@ cask "google-chrome"
 cask "iterm2"
 # https://gist.github.com/ntamvl/5f4dbaa8f68e6897b99682a395a44c2e
 # https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac/28635465
-# cask "java" unless system "/usr/libexec/java_home --failfast"
+# https://gist.github.com/JeOam/a926dbb5145c4d0789c1
+# https://gist.github.com/tomysmile/a9a7aee85ff73454bd57e198ad90e614
+# http://www.lonecpluspluscoder.com/2017/04/27/installing-java-8-jdk-os-x-using-homebrew/
+# http://davidcai.github.io/blog/posts/install-multiple-jdk-on-mac/
+cask "java"
 cask "macdown"
 cask "rowanj-gitx"
 cask "skype"
 cask "slack"
 cask "sourcetree"
 cask "sublime-text"
-# cask "vagrant"
-# cask "virtualbox"
+cask "vagrant"
+cask "virtualbox"
 cask "vlc"
 # cask "wireshark"
 
