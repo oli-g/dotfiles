@@ -1,89 +1,62 @@
 #!/bin/bash
 
-DOTFILES_PATH="${HOME}/.dotfiles"
-DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/master"
+set -euo pipefail
+
+# Setup dotfiles environment variables
+DOTFILES_HOME="${HOME}/.dotfiles"
 DOTFILES_GIT_REMOTE="git@github.com:oli-g/dotfiles.git"
+DOTFILES_GIT_BRANCH="master"
+DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/${DOTFILES_GIT_BRANCH}"
 
-PREZTO_PATH="${HOME}/.zprezto"
-PREZTO_GIT_REMOTE="git@github.com:sorin-ionescu/prezto.git"
+# TODO
+# https://github.com/cowboy/dotfiles/blob/master/bin/dotfiles
 
-PROJECTS_PATH="${HOME}/Code"
+# PREZTO_PATH="${HOME}/.zprezto"
+# PREZTO_GIT_REMOTE="git@github.com:sorin-ionescu/prezto.git"
+# PROJECTS_PATH="${HOME}/Code"
 
-# If missing, download and extract the dotfiles repository
-if [[ ! -d $DOTFILES_PATH ]]; then
-    printf "$(tput setaf 7)Downloading dotfiles...\033[m\n"
-    # mkdir ${DOTFILES_PATH}
-    # Get the tarball
-    # curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOTFILES_TARBALL_URL}
-    # Extract to the dotfiles directory
-    # tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_PATH}
-    # Remove the tarball
-    # rm -rf ${HOME}/dotfiles.tar.gz
+# Download and extract the dotfiles repository, if missing
+if [[ ! -d "${DOTFILES_HOME}" ]] ; then
+    printf "$(tput setaf 7)%s$(tput sgr0)\n" "Downloading dotfiles..."
+    curl -fsSLo "${HOME}/dotfiles.tar.gz" "${DOTFILES_TARBALL_URL}"
+    mkdir -p "${DOTFILES_HOME}"
+    tar -zxf "${HOME}/dotfiles.tar.gz" --strip-components 1 -C "${DOTFILES_HOME}"
+    rm -rf "${HOME}/dotfiles.tar.gz"
 fi
 
-source "${DOTFILES_PATH}/lib/help.sh"
-source "${DOTFILES_PATH}/lib/list.sh"
-source "${DOTFILES_PATH}/lib/utils.sh"
-source "${DOTFILES_PATH}/lib/brew.sh"
+source "${DOTFILES_HOME}/lib/utils.sh"
+source "${DOTFILES_HOME}/lib/brew.sh"
 
-# Help text
-if [[ "$1" == "-h" || "$1" == "--help" ]]; then
-    run_help
+# Display help
+if [[ "$#" -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]] || [[ "$1" == "help" ]] ; then
+    source "${DOTFILES_HOME}/lib/help.sh"
+    display_help
     exit
 fi
 
-# List additional software to install
-if [[ "$1" == "-l" || "$1" == "--list" ]]; then
-    run_list
+# Run initialization
+if [[ "$1" == "init" ]] ; then
+    source "${DOTFILES_HOME}/lib/init.sh"
+    run_init
+    e_success "Dotfiles correctly initialized"
     exit
 fi
 
-# Test for known flags
-for opt in $@; do
-    case $opt in
-        --no-packages) no_packages=true ;;
-        --no-sync) no_sync=true ;;
-        -*|--*) e_warning "Warning: invalid option $opt." ;;
-    esac
-done
-
-# Check that current shell is ZSH
-if ! is_zsh_shell; then
-    e_error "Zsh must be the default login shell."
-    e_advice "Set zsh as default in System Preferences -> User & Groups"
-    exit 1
+# Run bootstrap
+if [[ "$1" == "bootstrap" ]] ; then
+    source "${DOTFILES_HOME}/lib/bootstrap.sh"
+    run_bootstrap
+    e_success "Dotfiles correctly bootstrapped"
+    exit
 fi
 
-# Before relying on Homebrew, check that packages can be compiled
-if ! type_exists "gcc"; then
-    e_error "The XCode Command Line Tools must be installed first."
-    e_advice "Download them from: https://developer.apple.com/downloads"
-    exit 1
+# Run setup
+if [[ "$1" == "setup" ]] ; then
+    source "${DOTFILES_HOME}/lib/setup.sh"
+    run_setup
+    e_success "Dotfiles correctly set up"
+    exit
 fi
 
-# source "${DOTFILES_PATH}/lib/brew/install.sh"
-# source "${DOTFILES_PATH}/lib/zsh/install.sh"
-# source "${DOTFILES_PATH}/lib/git/install.sh"
-# source "${DOTFILES_PATH}/lib/sublime/install.sh"
-# source "${DOTFILES_PATH}/lib/vim/install.sh"
-# source "${DOTFILES_PATH}/lib/prezto/install.sh"
-# source "${DOTFILES_PATH}/lib/ruby/install.sh"
-# source "${DOTFILES_PATH}/lib/mysql/install.sh"
-# source "${DOTFILES_PATH}/lib/postgresql/install.sh"
-# source "${DOTFILES_PATH}/lib/go/install.sh"
-# source "${DOTFILES_PATH}/lib/docker/install.sh"
-# source "${DOTFILES_PATH}/lib/aws/install.sh"
-# source "${DOTFILES_PATH}/lib/heroku/install.sh"
-
-e_header "Symlinking dotfiles..."
-for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.symlink); do
-    # Force create or replace the symlink
-    ln -fs $file "${HOME}/.$(basename "${file%.*}")"
-done
-
-if ! [ -e "${HOME}/.localrc" ]; then
-    e_header "Setting up localrc file..."
-    cp "${DOTFILES_PATH}/lib/localrc.example" "${HOME}/.localrc"
-fi
-
-e_success "Dotfiles installed"
+e_error "Wrong argument: $1"
+exit 2

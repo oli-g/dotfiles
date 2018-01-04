@@ -1,7 +1,6 @@
 #!/bin/bash
 
-run_help() {
-
+display_help() {
     cat <<EOT
 OS X dotfiles - Giannicola Olivadoti - http://oli-g.me/
 Usage: $(basename "$0") [options]
@@ -14,5 +13,7 @@ Documentation can be found at https://github.com/oli-g/dotfiles/
 Copyright (c) Giannicola Olivadoti
 Licensed under the MIT license.
 EOT
-
 }
+
+# TODO
+# https://github.com/cowboy/dotfiles/blob/master/bin/dotfiles

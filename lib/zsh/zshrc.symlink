@@ -1,31 +1,106 @@
 #
-# Executes commands at the start of an interactive session.
+# Executes commands at the start of an interactive session
 #
-# Authors:
-#   Giannicola Olivadoti <olinicola@gmail.com>
+#
+# +----------------+-----------+-----------+------+
+# |                |Interactive|Interactive|Script|
+# |                |login      |non-login  |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zshenv     |    A      |    A      |  A   |
+# +----------------+-----------+-----------+------+
+# |~/.zshenv       |    B      |    B      |  B   |
+# +----------------+-----------+-----------+------+
+# |/etc/zprofile   |    C      |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zprofile     |    D      |           |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zshrc      |    E      |    C      |      |
+# +----------------+-----------+-----------+------+
+# |~/.zshrc        |    F      |    D      |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zlogin     |    G      |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zlogin       |    H      |           |      |
+# +----------------+-----------+-----------+------+
+# |                |           |           |      |
+# +----------------+-----------+-----------+------+
+# |                |           |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zlogout      |    I      |           |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zlogout    |    J      |           |      |
+# +----------------+-----------+-----------+------+
+#
+#
+# /etc/zshenv    # Read for every shell
+# ~/.zshenv      # Read for every shell except ones started with -f
+# /etc/zprofile  # Global config for login shells, read before zshrc
+# ~/.zprofile    # User config for login shells
+# /etc/zshrc     # Global config for interactive shells
+# ~/.zshrc       # User config for interactive shells
+# /etc/zlogin    # Global config for login shells, read after zshrc
+# ~/.zlogin      # User config for login shells
+# ~/.zlogout     # User config for login shells, read upon logout
+# /etc/zlogout   # Global config for login shells, read after user logout file
+#
+#
+# More info at http://zshwiki.org/home/config/files
 #
 
-# Source Prezto
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+#
+# Load zplug
+#
+
+export ZPLUG_HOME="/usr/local/opt/zplug"
+[[ -s "${ZPLUG_HOME}/init.zsh" ]] && source "${ZPLUG_HOME}/init.zsh"
+
+#
+# Define zplug plugins
+#
+
+export ZIM_HOME="${ZPLUG_REPOS}/zimfw/zimfw"
+zplug "zimfw/zimfw", as:"plugin", use:"init.zsh", at:"master", depth:1
+
+#
+# Install zplug plugins, if needed
+#
+
+if ! zplug check --verbose ; then
+    zplug install
 fi
 
-export PROJECTS_PATH="${HOME}/Code"
-export DOTFILES_PATH="${HOME}/.dotfiles"
+#
+# Load zplug plugins
+#
 
-# Source dotfiles
-for file in $(find "${DOTFILES_PATH}/lib" -depth 2 -name *.zsh); do
-    source $file
-done
+zplug load --verbose
 
-# Source .localrc for private variables and overrides
-if [ -e "${HOME}/.localrc" ]; then
-    source "${HOME}/.localrc"
-fi
+#
+# Load .zshrc.local
+#
 
-# Disable some Prezto aliases
-alias rm='nocorrect rm'
-alias mv='nocorrect mv'
+[[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
-# Disable autocorrect
-unsetopt CORRECT
+
+
+# # Source Prezto
+# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# fi
+# 
+# export PROJECTS_PATH="${HOME}/Code"
+# export DOTFILES_HOME="${HOME}/.dotfiles"
+# 
+# # Source dotfiles
+# for file in $(find "${DOTFILES_HOME}/lib" -depth 2 -name *.zsh); do
+#     source $file
+# done
+# 
+# 
+# # Disable some Prezto aliases
+# alias rm='nocorrect rm'
+# alias mv='nocorrect mv'
+# 
+# # Disable autocorrect
+# unsetopt CORRECT
