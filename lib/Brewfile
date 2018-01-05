@@ -34,7 +34,7 @@ brew "git-flow"
 # http://sourabhbajaj.com/mac-setup/Go/README.html
 # https://stackoverflow.com/questions/21499337/cannot-set-gopath-on-mac-osx
 # https://medium.com/@AkyunaAkish/setting-up-a-golang-development-environment-mac-os-x-d58e5a7ea24f
-# brew "go"
+brew "go"
 # brew "heroku-toolbelt"
 brew "htop"
 brew "httpie"
@@ -56,47 +56,33 @@ brew "mercurial"
 brew "zplug"
 brew "zsh"
 
-
-# TODO
-# https://github.com/cowboy/dotfiles/blob/master/init/30_osx_homebrew_casks.sh
-# https://github.com/donnemartin/dev-setup/blob/master/brew.sh
-# https://github.com/donnemartin/dev-setup/blob/master/android.sh
-# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L491
-# https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_homebrew_casks
-
-# Filezilla
-# ImageAlpha
-# ImageOptim
-# Alfred
-# Divvy
-# Flux
-# KeePassX
-# LimeChat
-# Network Connect
-
 # cask "adium"
 # cask "alfred"
+# cask "appcleaner"
 cask "atom"
+# cask "bartender"
 # cask "charles"
+# cask "dash"
 cask "docker"
 cask "dropbox"
 cask "firefox"
 cask "gitup"
 cask "google-chrome"
 cask "iterm2"
-# https://gist.github.com/ntamvl/5f4dbaa8f68e6897b99682a395a44c2e
-# https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac/28635465
-# https://gist.github.com/JeOam/a926dbb5145c4d0789c1
-# https://gist.github.com/tomysmile/a9a7aee85ff73454bd57e198ad90e614
-# http://www.lonecpluspluscoder.com/2017/04/27/installing-java-8-jdk-os-x-using-homebrew/
-# http://davidcai.github.io/blog/posts/install-multiple-jdk-on-mac/
 cask "java"
+# cask "launchcontrol"
 cask "macdown"
+# cask "marp"
+# cask "plex-media-server"
 cask "rowanj-gitx"
 cask "skype"
 cask "slack"
 cask "sourcetree"
+cask "spotify"
+# cask "steam"
 cask "sublime-text"
+# cask "time-sink"
+# cask "tower"
 cask "vagrant"
 cask "virtualbox"
 cask "vlc"
@@ -105,6 +91,7 @@ cask "vlc"
 # TODO
 # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L587
 # https://github.com/bkuhlmann/mac_os-config/blob/master/bin/install_app_store
+# mas "Amphetamine", id: 937984704
 # mas "Coffitivity", id: 659901392
 mas "Evernote", id: 406056744
 # mas "Xcode", id: 497799835
