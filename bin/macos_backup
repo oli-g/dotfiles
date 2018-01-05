@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# TODO
+# https://apple.stackexchange.com/a/224772
+# https://www.davidwaring.net/projects/backup.html
+# https://www.haykranen.nl/2008/05/05/rsync/
+# http://techion.com.au/blog/2014/9/3/deploystudio-rsync-backup-restore-user-data
+
+MACOS_BACKUP_SOURCE_PATH="${1%/}"
+MACOS_BACKUP_DESTINATION_PATH="${2%/}"
+
+echo "SOURCE: ${MACOS_BACKUP_SOURCE_PATH}"
+echo "DESTINATION: ${MACOS_BACKUP_DESTINATION_PATH}"
+
+if [[ ! -d "${MACOS_BACKUP_SOURCE_PATH}" ]] ; then
+    printf "ERROR: Source folder does not exist: ${MACOS_BACKUP_SOURCE_PATH}.\n"
+    exit 1
+fi
+
+if [[ ! -d "${MACOS_BACKUP_DESTINATION_PATH}" ]] ; then
+    printf "ERROR: Destination folder does not exist: ${MACOS_BACKUP_DESTINATION_PATH}.\n"
+    exit 1
+fi
+
+rsync -avE --progress --delete-after "${MACOS_BACKUP_SOURCE_PATH}" "${MACOS_BACKUP_DESTINATION_PATH}"

@@ -45,6 +45,14 @@ https://github.com/skwp/dotfiles#wait-youre-not-done-do-this
 https://github.com/skwp/dotfiles/blob/master/Rakefile#L190
 https://github.com/donnemartin/dev-setup/blob/master/osx.sh#L641
 
+# JAVA
+https://gist.github.com/ntamvl/5f4dbaa8f68e6897b99682a395a44c2e
+https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac/28635465
+https://gist.github.com/JeOam/a926dbb5145c4d0789c1
+https://gist.github.com/tomysmile/a9a7aee85ff73454bd57e198ad90e614
+http://www.lonecpluspluscoder.com/2017/04/27/installing-java-8-jdk-os-x-using-homebrew/
+http://davidcai.github.io/blog/posts/install-multiple-jdk-on-mac/
+
 
 # README Legacy
 
