@@ -82,6 +82,13 @@ zplug load --verbose
 
 [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
+#
+# Load dotfiles
+#
+
+for file in "$(find "${DOTFILES_HOME}/lib" -maxdepth 2 -name "*.zsh" -print -quit)" ; do
+    source "$file"
+done
 
 
 # # Source Prezto
