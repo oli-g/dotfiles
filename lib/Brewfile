@@ -36,7 +36,6 @@ brew "git-flow"
 # https://medium.com/@AkyunaAkish/setting-up-a-golang-development-environment-mac-os-x-d58e5a7ea24f
 brew "go"
 # brew "heroku-toolbelt"
-brew "htop"
 brew "httpie"
 # brew "hub"
 # brew "jenv"
