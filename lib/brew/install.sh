@@ -30,7 +30,7 @@ fi
 if ! tap_exists "homebrew/bundle" ; then
     e_header "Installing bundle tap..."
     brew tap "homebrew/bundle"
-    brew bundle dump --global
+    ! brew bundle dump --global
 fi
 
 if [[ ! -e "${HOME}/.Brewfile.local" ]] ; then
