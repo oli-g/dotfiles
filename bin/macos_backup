@@ -8,7 +8,7 @@ set -euo pipefail
 # https://www.haykranen.nl/2008/05/05/rsync/
 # http://techion.com.au/blog/2014/9/3/deploystudio-rsync-backup-restore-user-data
 
-MACOS_BACKUP_SOURCE_PATH="${1%/}"
+MACOS_BACKUP_SOURCE_PATH="${1}"
 MACOS_BACKUP_DESTINATION_PATH="${2%/}"
 
 echo "SOURCE: ${MACOS_BACKUP_SOURCE_PATH}"
