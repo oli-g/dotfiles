@@ -1,5 +1,3 @@
-# TODO
-# https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L472
 cask_args appdir: "/Applications",
           fontdir: "/Library/Fonts",
           input_methoddir: "/Library/Input Methods",
@@ -24,16 +22,6 @@ brew "awscli"
 brew "git"
 # brew "git-extras"
 brew "git-flow"
-# TODO
-# http://tammersaleh.com/posts/manage-your-gopath-with-direnv/
-# https://github.com/direnv/direnv/wiki/golang
-# http://rachbelaid.com/handling-go-workspace-with-direnv/
-# https://github.com/direnv/direnv
-# https://direnv.net/
-# https://www.reddit.com/r/golang/comments/40ps8k/really_wrestling_with_gopath/
-# http://sourabhbajaj.com/mac-setup/Go/README.html
-# https://stackoverflow.com/questions/21499337/cannot-set-gopath-on-mac-osx
-# https://medium.com/@AkyunaAkish/setting-up-a-golang-development-environment-mac-os-x-d58e5a7ea24f
 brew "go"
 # brew "heroku-toolbelt"
 brew "httpie"
@@ -62,6 +50,7 @@ cask "atom"
 # cask "bartender"
 # cask "charles"
 # cask "dash"
+# cask "disk-drill"
 cask "docker"
 cask "dropbox"
 cask "firefox"
@@ -90,6 +79,7 @@ cask "sublime-text"
 # cask "time-sink"
 # cask "tower"
 # cask "transmit"
+cask "tunnelblick"
 cask "vagrant"
 cask "virtualbox"
 # cask "viscosity"
