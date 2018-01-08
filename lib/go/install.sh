@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOPATH="${WORKSPACE_HOME}/go"
+GOPATH="${WORKSPACE_HOME}"
 GOROOT="/usr/local/opt/go/libexec"
 
 mkdir -p "${GOPATH}/bin" "${GOPATH}/pkg" "${GOPATH}/src"

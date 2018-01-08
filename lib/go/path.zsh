@@ -1,4 +1,4 @@
-export GOPATH="${WORKSPACE_HOME}/go"
+export GOPATH="${WORKSPACE_HOME}"
 export GOROOT="/usr/local/opt/go/libexec"
 
 path=(
