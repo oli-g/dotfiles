@@ -16,7 +16,8 @@ tap "caskroom/versions"
 # brew "asciinema"
 brew "awscli"
 # brew "ccat"
-# brew "chruby"
+brew "chruby"
+brew "cmake"
 # brew "desk"
 # brew "direnv"
 brew "git"
@@ -32,7 +33,7 @@ brew "mas"
 brew "mercurial"
 # brew "ngrep"
 # brew "reattach-to-user-namespace"
-# brew "ruby-install"
+brew "ruby-install"
 # brew "rust"
 # brew "screen"
 brew "terraform"
@@ -94,4 +95,4 @@ cask "zoomus"
 # mas "Amphetamine", id: 937984704
 # mas "Coffitivity", id: 659901392
 mas "Evernote", id: 406056744
-# mas "Xcode", id: 497799835
+mas "Xcode", id: 497799835
