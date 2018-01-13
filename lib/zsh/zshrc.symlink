@@ -86,7 +86,7 @@ zplug load --verbose
 # Load dotfiles
 #
 
-for file in "$(find "${DOTFILES_HOME}/lib" -maxdepth 2 -name "*.zsh" -print -quit)" ; do
+for file in $(find "${DOTFILES_HOME}/lib" -maxdepth 2 -name "*.zsh" -print) ; do
     source "$file"
 done
 

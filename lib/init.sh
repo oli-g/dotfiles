@@ -20,6 +20,7 @@ run_init() {
     # https://github.com/AndrewSB/dotfiles/blob/master/machine-setup-functions.sh#L9
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L307
     # https://github.com/ptb/mac-setup/blob/develop/mac-setup.command#L620
+    # sudo xcodebuild -license accept
     ask_confirmation "Installing Xcode Command Line Tools..."
     if is_confirmed ; then
         ! xcode-select --install
