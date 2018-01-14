@@ -28,11 +28,11 @@ run_setup() {
     fi
 
     # Update zplug plugins
-    if is_zsh_shell ; then
-        if type_exists "zplug" ; then
+    if is_zsh_shell && ! is_system_zsh_shell ; then
+        if formula_exists "zplug" ; then
             ask_confirmation "Updating zplug plugins..."
             if is_confirmed ; then
-                zplug update
+                zsh -c '[[ -s "${ZPLUG_HOME}/init.zsh" ]] && source "${ZPLUG_HOME}/init.zsh"; zplug update'
             fi
         fi
     fi

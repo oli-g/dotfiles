@@ -10,7 +10,7 @@ run_init() {
     ask_admin_password
 
     # Install MacOS Software Updates
-    ask_confirmation "Installing MacOS Software Software..."
+    ask_confirmation "Installing MacOS Software Updates..."
     if is_confirmed ; then
         ! softwareupdate --install --all --verbose
     fi
