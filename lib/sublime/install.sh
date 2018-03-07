@@ -1,13 +1,11 @@
 #!/bin/bash
 
-SUBLIME_PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+SUBLIME_PACKAGE_CONTROL_PATH="${HOME}/Library/Application Support/Sublime Text 3/Installed Packages/Package Control.sublime-package"
+SUBLIME_PACKAGE_CONTROL_DOWNLOAD_URL="https://packagecontrol.io/Package%20Control.sublime-package"
 
-if [[ ! -d ${SUBLIME_PATH} ]]; then
-    e_warning "Warning: sublime has not been installed yet."
-    e_advice "Download it from: http://www.sublimetext.com/3"
-else
-    if ! type_exists 'subl'; then
-        e_header "Installing sublime shell extension..."
-        sudo ln -fs "${SUBLIME_PATH}/subl" /usr/bin/subl
+if [[ ! -e "${SUBLIME_PACKAGE_CONTROL_PATH}" ]]; then
+    ask_confirmation "Installing Sublime3 Package Control..."
+    if is_confirmed ; then
+        curl -fsSLo "${SUBLIME_PACKAGE_CONTROL_PATH}" "${SUBLIME_PACKAGE_CONTROL_DOWNLOAD_URL}"
     fi
 fi
