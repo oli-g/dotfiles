@@ -43,19 +43,19 @@ if [[ "$1" == "init" ]] ; then
     exit
 fi
 
-# Run bootstrap
-if [[ "$1" == "bootstrap" ]] ; then
-    source "${DOTFILES_HOME}/lib/bootstrap.sh"
-    run_bootstrap
-    e_success "Dotfiles correctly bootstrapped"
-    exit
-fi
-
 # Run setup
 if [[ "$1" == "setup" ]] ; then
     source "${DOTFILES_HOME}/lib/setup.sh"
     run_setup
     e_success "Dotfiles correctly set up"
+    exit
+fi
+
+# Run bootstrap
+if [[ "$1" == "bootstrap" ]] ; then
+    source "${DOTFILES_HOME}/lib/bootstrap.sh"
+    run_bootstrap
+    e_success "Dotfiles correctly bootstrapped"
     exit
 fi
 

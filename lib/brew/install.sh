@@ -6,7 +6,7 @@ if ! type_exists "brew" ; then
 else
     ask_confirmation "Updating brew..."
     if is_confirmed ; then
-        brew doctor
+        ! brew doctor
         brew update
     fi
 fi
@@ -19,12 +19,6 @@ else
     if is_confirmed ; then
         ! brew upgrade mas
     fi
-fi
-
-if ! tap_exists "caskroom/cask" ; then
-    e_header "Installing cask tap..."
-    brew tap "caskroom/cask"
-    brew cask list
 fi
 
 if ! tap_exists "homebrew/bundle" ; then

@@ -69,12 +69,12 @@ run_brew_bundle() {
     # Install global brew bundle apps
     ln -fs "${DOTFILES_HOME}/lib/Brewfile" "${HOME}/.Brewfile"
     e_header "Bundling from ${HOME}/.Brewfile..."
-    brew bundle --global
+    brew bundle --verbose --global
 
     # Install local brew bundle apps
     if [[ -e "${HOME}/.Brewfile.local" ]] ; then
         e_header "Bundling from ${HOME}/.Brewfile.local..."
-        brew bundle --file="${HOME}/.Brewfile.local"
+        brew bundle --verbose --file="${HOME}/.Brewfile.local"
     fi
 }
 
