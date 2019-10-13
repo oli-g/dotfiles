@@ -38,6 +38,7 @@ run_init() {
     # Setup the dotfiles repository, if missing
     if [[ ! -d "${DOTFILES_HOME}/.git" ]] ; then
         e_header "Cloning dotfiles..."
+        rm -rf "${DOTFILES_HOME}"
         git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_HOME}"
     fi
 }
