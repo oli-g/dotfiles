@@ -35,7 +35,6 @@ run_bootstrap() {
     # source "${DOTFILES_HOME}/lib/heroku/install.sh"
 
     source "${DOTFILES_HOME}/lib/aws/install.sh"
-    source "${DOTFILES_HOME}/lib/go/install.sh"
     source "${DOTFILES_HOME}/lib/iterm/install.sh"
     source "${DOTFILES_HOME}/lib/sublime/install.sh"
 
