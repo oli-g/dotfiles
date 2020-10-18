@@ -1,19 +1,12 @@
 #!/bin/bash
 
-# Update dotfiles repo
+# Clone or pull dotfiles repo
 # Symlink dotfiles
-# Update zplug plugins
+# Install zim modules
+# Source .zshrc
 run_setup() {
-    # Update the dotfiles repository
-    if [[ ! -d "${DOTFILES_HOME}/.git" ]] ; then
-        e_header "Cloning dotfiles..."
-        git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_HOME}"
-    else
-        ask_confirmation "Updating dotfiles..."
-        if is_confirmed ; then
-            git -C "${DOTFILES_HOME}" pull --rebase origin "${DOTFILES_GIT_BRANCH}"
-        fi
-    fi
+    # Pull dotfiles repository
+    update_dotfiles_repository
 
     # Symlink dotfiles into home folder
     e_header "Symlinking dotfiles..."
@@ -21,19 +14,15 @@ run_setup() {
         ln -fs $file "${HOME}/.$(basename "${file%.*}")"
     done
 
-    # Setup .zshrc.local file into home folder
+    # Set up .zshrc.local file into home folder
     if [[ ! -e "${HOME}/.zshrc.local" ]] ; then
         e_header "Setting up .zshrc.local file..."
-        cp "${DOTFILES_HOME}/lib/zshrc.local.example" "${HOME}/.zshrc.local"
+        cp "${DOTFILES_HOME}/lib/zsh/zshrc.local" "${HOME}/.zshrc.local"
     fi
 
-    # Update zplug plugins
-    if is_zsh_shell && ! is_system_zsh_shell ; then
-        if formula_exists "zplug" ; then
-            ask_confirmation "Updating zplug plugins..."
-            if is_confirmed ; then
-                zsh -c '[[ -s "${ZPLUG_HOME}/init.zsh" ]] && source "${ZPLUG_HOME}/init.zsh"; zplug update'
-            fi
-        fi
+    # Install zim modules and source .zshrc
+    if [[ -s "${HOME}/.zshrc" ]] ; then
+        e_header "Installing zim modules..."
+        zsh -c 'source "${HOME}/.zim/zimfw.zsh" install && source "${HOME}/.zshrc" && p10k configure'
     fi
 }
