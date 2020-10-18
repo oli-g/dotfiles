@@ -10,38 +10,36 @@
 run_bootstrap() {
     ask_admin_password
 
-    ask_confirmation "Setting up Computer name and Host name..."
-    if is_confirmed ; then
-        run_basic_setup
-    fi
+    # ask_confirmation "Setting up Computer name and Host name..."
+    # if is_confirmed ; then
+    #     run_basic_setup
+    # fi
 
     # Install brew
     source "${DOTFILES_HOME}/lib/brew/install.sh"
 
-    ask_confirmation "Installing packages and apps with Brew..."
-    if is_confirmed ; then
-        run_brew_bundle
-    fi
+    # ask_confirmation "Installing packages and apps with Brew..."
+    # if is_confirmed ; then
+    #     run_brew_bundle
+    # fi
 
     # source "${DOTFILES_HOME}/lib/sublime/install.sh"
     # source "${DOTFILES_HOME}/lib/vim/install.sh"
     # source "${DOTFILES_HOME}/lib/prezto/install.sh"
     # source "${DOTFILES_HOME}/lib/ruby/install.sh"
-    # source "${DOTFILES_HOME}/lib/mysql/install.sh"
-    # source "${DOTFILES_HOME}/lib/postgresql/install.sh"
     # source "${DOTFILES_HOME}/lib/go/install.sh"
     # source "${DOTFILES_HOME}/lib/docker/install.sh"
     # source "${DOTFILES_HOME}/lib/aws/install.sh"
     # source "${DOTFILES_HOME}/lib/heroku/install.sh"
 
-    source "${DOTFILES_HOME}/lib/aws/install.sh"
+    # source "${DOTFILES_HOME}/lib/aws/install.sh"
     source "${DOTFILES_HOME}/lib/iterm/install.sh"
     source "${DOTFILES_HOME}/lib/sublime/install.sh"
 
-    ask_confirmation "Applying MacOS Defaults for Developers..."
-    if is_confirmed ; then
-        apply_macos_defaults
-    fi
+    # ask_confirmation "Applying MacOS Defaults for Developers..."
+    # if is_confirmed ; then
+    #     apply_macos_defaults
+    # fi
 }
 
 run_basic_setup() {
