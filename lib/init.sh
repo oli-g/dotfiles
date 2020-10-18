@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Install MacOS updates
-# Install Xcode tools
+# Install MacOS Software Updates
+# Install Xcode Command Line Tools
+# Clone or pull dotfiles repo
 # Install brew
 # Install git
 # Install zsh
-# Clone dotfiles repo
 run_init() {
     ask_admin_password
 
     # Install MacOS Software Updates
     ask_confirmation "Installing MacOS Software Updates..."
-    if is_confirmed ; then
-        ! softwareupdate --install --all --verbose
+    if is_cofirmed ; then
+        sudo softwareupdate --install --all --verbose
     fi
 
     # Install Xcode Command Line Tools
@@ -24,7 +24,19 @@ run_init() {
     ask_confirmation "Installing Xcode Command Line Tools..."
     if is_confirmed ; then
         ! xcode-select --install
+        while true ; do
+            if is_command_line_tools_installed ; then
+                e_success "Xcode Command Line Tools installed correctly"
+                break
+            else
+                e_header "Xcode Command Line Tools still installing..."
+                sleep 20
+            fi
+        done
     fi
+
+    # Clone or pull dotfiles repository
+    update_dotfiles_repository
 
     # Install brew
     source "${DOTFILES_HOME}/lib/brew/install.sh"
@@ -34,11 +46,4 @@ run_init() {
 
     # Install zsh
     source "${DOTFILES_HOME}/lib/zsh/install.sh"
-
-    # Setup the dotfiles repository, if missing
-    if [[ ! -d "${DOTFILES_HOME}/.git" ]] ; then
-        e_header "Cloning dotfiles..."
-        rm -rf "${DOTFILES_HOME}"
-        git clone -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_HOME}"
-    fi
 }

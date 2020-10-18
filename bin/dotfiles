@@ -26,7 +26,6 @@ if [[ ! -d "${DOTFILES_HOME}" ]] ; then
 fi
 
 source "${DOTFILES_HOME}/lib/utils.sh"
-source "${DOTFILES_HOME}/lib/brew.sh"
 
 # Display help
 if [[ "$#" -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]] || [[ "$1" == "help" ]] ; then

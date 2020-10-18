@@ -28,11 +28,11 @@ e_warning() {
 # Ask for administrator password, and keep it alive in background
 ask_admin_password() {
     # Ask for the administrator password upfront
-    sudo -v
+    sudo --validate
     # Keep-alive: update existing sudo time stamp if set, until current script has finished
     # This does not work with Homebrew, since it explicitly invalidates the sudo timestamp
     # See https://gist.github.com/cowboy/3118588
-    while true; do sudo -n true; sleep 20; kill -0 "$$" || exit; done 2>/dev/null &
+    while true; do sudo --non-interactiv true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 }
 
 # Ask for confirmation before proceeding
@@ -76,10 +76,69 @@ is_system_zsh_shell() {
     return 1   
 }
 
+# Test whether a file exists
+# $1 - file to test
+file_exists() {
+    if [[ -e $1 ]] ; then
+        return 0
+    fi
+    return 1
+}
+
 # Test whether a command exists
 # $1 - cmd to test
 type_exists() {
     if [ $(type -p $1) ] ; then
+        return 0
+    fi
+    return 1
+}
+
+is_command_line_tools_installed() {
+    if softwareupdate --history | grep --silent "Command Line Tools" ; then
+        return 0
+    fi
+    return 1
+}
+
+update_dotfiles_repository() {
+    if [[ ! -d "${DOTFILES_HOME}/.git" ]] ; then
+        e_header "Cloning dotfiles repository..."
+        rm -rf "${DOTFILES_HOME}"
+        git clone --branch "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_REMOTE}" "${DOTFILES_HOME}"
+    else
+        ask_confirmation "Pulling latest changes from remote dotfiles repository..."
+        if is_confirmed ; then
+            git -C "${DOTFILES_HOME}" pull --rebase origin "${DOTFILES_GIT_BRANCH}"
+        fi
+    fi
+}
+
+# Test whether a Homebrew formula is already installed
+# $1 - formula name
+formula_exists() {
+    if $(brew list "$1" >/dev/null) ; then
+        printf "%s formula already installed.\n" "$1"
+        return 0
+    fi
+    e_warning "Missing formula: $1"
+    return 1
+}
+
+# Test whether a Homebrew tap is already installed
+# $1 - tap name
+tap_exists() {
+    if $(brew tap | grep "$1" >/dev/null) ; then
+        printf "%s tap already installed.\n" "$1"
+        return 0
+    fi
+    e_warning "Missing tap: $1"
+    return 1
+}
+
+is_signed_in() {
+    if $(mas account >/dev/null) ; then
+        e_header "Signed in as $(mas account)"
         return 0
     fi
     return 1
