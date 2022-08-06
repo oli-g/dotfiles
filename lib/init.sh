@@ -11,8 +11,8 @@ run_init() {
 
     # Install MacOS Software Updates
     ask_confirmation "Installing MacOS Software Updates..."
-    if is_cofirmed ; then
-        sudo softwareupdate --install --all --verbose
+    if is_confirmed ; then
+        softwareupdate --install --all --verbose
     fi
 
     # Install Xcode Command Line Tools
@@ -29,7 +29,7 @@ run_init() {
                 e_success "Xcode Command Line Tools installed correctly"
                 break
             else
-                e_header "Xcode Command Line Tools still installing..."
+                e_header "Xcode Command Line Tools installation still running..."
                 sleep 20
             fi
         done

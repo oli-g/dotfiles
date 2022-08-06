@@ -11,7 +11,7 @@ else
 fi
 
 if [[ ! -e "${HOME}/.gitconfig.local" ]] ; then
-    e_header "Setting up .gitconfig.local file..."
+    e_header "Setting up ${HOME}/.gitconfig.local file..."
     ask "Git author name"
     author_name=$(answer)
     ask "Git author email"
@@ -22,6 +22,4 @@ if [[ ! -e "${HOME}/.gitconfig.local" ]] ; then
     git config --file "${HOME}/.gitconfig.local" credential.helper "${credentials_helper}"
 fi
 
-if [[ ! -e "${HOME}/.gitconfig" ]] ; then
-    git config --global include.path "~/.gitconfig.local"
-fi
+git config --global include.path "~/.gitconfig.local"
