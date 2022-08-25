@@ -10,33 +10,24 @@ TODO check https://github.com/necolas/dotfiles
 
 For fist-time installation, run:
 
-```
+```bash
 bash -c "$(curl -fsSL raw.github.com/oli-g/dotfiles/master/bin/dotfiles)" -- init
 ```
 
-The command will install basic dependencies like Xcode Command Line Tools, Brew, Git and Zsh, and it will clone this repository into `$HOME/.dotfiles` folder.
+The command will install MacOS Software Updates and basic dependencies like Xcode Command Line Tools, `brew`, `git` and `zsh`, then it will clone this repository into `$HOME/.dotfiles` folder. The command will symlink a bunch of hidden files (related to `zsh`, `git` and more) into `$HOME` folder. Open a new terminal session to see the changes.
 
-In order to actually activate the dotfiles, run:
+The same command can be re-run multiple times after first installation with:
 
-```
-cd "$HOME/.dotfiles"
-bin/dotfiles setup
-```
-
-The command will symlink a bunch of Zsh-related hidden files into `$HOME` folder. Open a new terminal session to see the changes.
-
-## Update
-
-After fist-time installation, dotfiles can be updated with the same `setup` subcommand:
-
-```
+```bash
 dotfiles setup
 ```
 
-In order to install and setup various software, run:
+## Update
 
-```
-dotfiles bootstrap
+After fist-time installation, dotfiles and various software can be updated with the `update` subcommand:
+
+```bash
+dotfiles update
 ```
 
 ## Inspiration

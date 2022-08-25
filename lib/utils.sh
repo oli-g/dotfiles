@@ -114,6 +114,17 @@ update_dotfiles_repository() {
     fi
 }
 
+install_dotfiles() {
+    # Clone or pull dotfiles repository
+    update_dotfiles_repository
+
+    # Symlink dotfiles into home folder
+    e_header "Symlinking dotfiles..."
+    for file in $(find -H "${DOTFILES_HOME}/lib" -maxdepth 2 -name "*.symlink") ; do
+        ln -fs $file "${HOME}/.$(basename "${file%.*}")"
+    done
+}
+
 # Test whether a Homebrew formula is already installed
 # $1 - formula name
 formula_exists() {

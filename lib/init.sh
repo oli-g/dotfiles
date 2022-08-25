@@ -2,10 +2,14 @@
 
 # Install MacOS Software Updates
 # Install Xcode Command Line Tools
+# Setup ComputerName and HostName
 # Clone or pull dotfiles repo
+# Symlink dotfiles
 # Install brew
 # Install git
 # Install zsh
+# Source .zshrc and install zim modules
+# Configure powerlevel10k
 run_init() {
     ask_admin_password
 
@@ -35,8 +39,14 @@ run_init() {
         done
     fi
 
-    # Clone or pull dotfiles repository
-    update_dotfiles_repository
+    # Setup ComputerName and HostName
+    ask_confirmation "Setting up Computer name and Host name..."
+    if is_confirmed ; then
+        run_basic_setup
+    fi
+
+    # Clone or pull dotfiles repository and install dotfiles
+    install_dotfiles
 
     # Install brew
     source "${DOTFILES_HOME}/lib/brew/install.sh"
@@ -46,4 +56,18 @@ run_init() {
 
     # Install zsh
     source "${DOTFILES_HOME}/lib/zsh/install.sh"
+
+    e_advice "Please open a new terminal to get the latest changes..."
+}
+
+run_basic_setup() {
+    ask "Computer Name"
+    computer_name=$(answer)
+    ask "Host Name"
+    host_name=$(answer)
+
+    sudo scutil --set ComputerName "${computer_name}"
+    sudo scutil --set HostName "${host_name}"
+    sudo scutil --set LocalHostName "${host_name}"
+    sudo defaults write "/Library/Preferences/SystemConfiguration/com.apple.smb.server" NetBIOSName -string "${host_name}"
 }

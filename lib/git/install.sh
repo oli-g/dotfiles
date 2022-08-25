@@ -10,7 +10,7 @@ else
     fi
 fi
 
-if [[ ! -e "${HOME}/.gitconfig.local" ]] ; then
+if ! file_exists "${HOME}/.gitconfig.local" ; then
     e_header "Setting up ${HOME}/.gitconfig.local file..."
     ask "Git author name"
     author_name=$(answer)

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [[ ! -e "${HOME}/.aws/credentials" ]] ; then
+if ! file_exists "${HOME}/.aws/credentials" ; then
     if formula_exists "awscli" ; then
-        e_header "Setting up .aws/credentials file..."
-        aws configure
+        e_header "Setting up ${HOME}/.aws/credentials file..."
+        ! aws configure
     fi
 fi

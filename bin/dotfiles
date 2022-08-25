@@ -7,14 +7,12 @@ DOTFILES_HOME="${HOME}/.dotfiles"
 DOTFILES_GIT_REMOTE="git@github.com:oli-g/dotfiles.git"
 DOTFILES_GIT_BRANCH="master"
 DOTFILES_TARBALL_URL="https://github.com/oli-g/dotfiles/tarball/${DOTFILES_GIT_BRANCH}"
-WORKSPACE_HOME="${HOME}/Code"
 
 # TODO
 # https://github.com/cowboy/dotfiles/blob/master/bin/dotfiles
 
 # PREZTO_PATH="${HOME}/.zprezto"
 # PREZTO_GIT_REMOTE="git@github.com:sorin-ionescu/prezto.git"
-# PROJECTS_PATH="${HOME}/Code"
 
 # Download and extract the dotfiles repository, if missing
 if [[ ! -d "${DOTFILES_HOME}" ]] ; then
@@ -34,7 +32,7 @@ if [[ "$#" -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]] || [[ "$1" =
     exit
 fi
 
-# Run initialization
+# Run init
 if [[ "$1" == "init" ]] ; then
     source "${DOTFILES_HOME}/lib/init.sh"
     run_init
@@ -42,19 +40,11 @@ if [[ "$1" == "init" ]] ; then
     exit
 fi
 
-# Run setup
-if [[ "$1" == "setup" ]] ; then
-    source "${DOTFILES_HOME}/lib/setup.sh"
-    run_setup
-    e_success "Dotfiles correctly set up"
-    exit
-fi
-
-# Run bootstrap
-if [[ "$1" == "bootstrap" ]] ; then
-    source "${DOTFILES_HOME}/lib/bootstrap.sh"
-    run_bootstrap
-    e_success "Dotfiles correctly bootstrapped"
+# Run update
+if [[ "$1" == "update" ]] ; then
+    source "${DOTFILES_HOME}/lib/update.sh"
+    run_update
+    e_success "Dotfiles correctly updated"
     exit
 fi
 
