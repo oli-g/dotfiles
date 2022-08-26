@@ -2,5 +2,4 @@
 # Executes commands at logout
 #
 
-
 echo "Bye!"

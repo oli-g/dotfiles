@@ -7,7 +7,6 @@
 #
 
 export DOTFILES_HOME="${HOME}/.dotfiles"
-export WORKSPACE_HOME="${HOME}/Code"
 
 #
 # Browser
@@ -21,7 +20,7 @@ fi
 # Editors
 #
 
-export EDITOR="nano"
+export EDITOR="subl -w"
 export VISUAL="nano"
 export PAGER="less"
 
@@ -34,11 +33,15 @@ if [[ -z "$LANG" ]] ; then
 fi
 
 #
-# Paths
+# Go
 #
 
-# Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+export GOPATH="${HOME}/.go"
+export GOROOT=/usr/local/opt/go/libexec
+
+#
+# Paths
+#
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -47,10 +50,15 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-	$DOTFILES_HOME/bin
+    $DOTFILES_HOME/bin
+    $HOME/.local/bin
     /usr/local/{bin,sbin}
+    $GOPATH/bin
     $path
 )
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
 
 #
 # Less
@@ -66,17 +74,3 @@ path=(
 # if (( $#commands[(i)lesspipe(|.sh)] )) ; then
 #     export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 # fi
-
-#
-# Temporary Files
-#
-
-if [[ ! -d "$TMPDIR" ]] ; then
-    export TMPDIR="/tmp/$LOGNAME"
-    mkdir -p -m 700 "$TMPDIR"
-fi
-
-TMPPREFIX="${TMPDIR%/}/zsh"
-if [[ ! -d "$TMPPREFIX" ]] ; then
-    mkdir -p "$TMPPREFIX"
-fi

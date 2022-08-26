@@ -195,23 +195,23 @@ bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# ------------------------
-# Load local configuration
-# ------------------------
+# -----------
+# Enable asdf
+# -----------
 
-[[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
+[[ -s "/usr/local/opt/asdf/libexec/asdf.sh" ]] && source "/usr/local/opt/asdf/libexec/asdf.sh"
 
 # ------------
 # Enable pyenv
 # ------------
 
-# if command -v pyenv 1>/dev/null 2>&1 ; then
-#   eval "$(pyenv init -)"
-# fi
-# 
-# if which pyenv-virtualenv-init > /dev/null ; then
-#   eval "$(pyenv virtualenv-init -)"
-# fi
+if command -v pyenv 1>/dev/null 2>&1 ; then
+  eval "$(pyenv init -)"
+fi
+
+if which pyenv-virtualenv-init > /dev/null ; then
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 # -----------
 # Enable jenv
@@ -224,8 +224,8 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Enable chruby
 # -------------
 
-# [[ -s /usr/local/opt/chruby/share/chruby/chruby.sh ]] && source /usr/local/opt/chruby/share/chruby/chruby.sh
-# [[ -s /usr/local/opt/chruby/share/chruby/auto.sh ]] && source /usr/local/opt/chruby/share/chruby/auto.sh
+[[ -s /usr/local/opt/chruby/share/chruby/chruby.sh ]] && source /usr/local/opt/chruby/share/chruby/chruby.sh
+[[ -s /usr/local/opt/chruby/share/chruby/auto.sh ]] && source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # --------------------------------
 # Load powerlevel10k configuration
@@ -234,9 +234,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
 [[ ! -f "${ZDOTDIR:-$HOME}/.p10k.zsh" ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
-
-# export PROJECTS_PATH="${HOME}/Code"
-# export DOTFILES_HOME="${HOME}/.dotfiles"
 
 #
 # Load dotfiles
@@ -250,3 +247,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 # for file in $(find "${DOTFILES_HOME}/lib" -depth 2 -name *.zsh); do
 #     source $file
 # done
+
+# ------------------------
+# Load local configuration
+# ------------------------
+
+[[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
